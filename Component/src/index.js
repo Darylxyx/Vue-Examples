@@ -12,7 +12,7 @@ new Vue({
 	},
 	template: `<div @click="handleClick" class="container">
 				<bb :prop="message"></bb>
-				<cc></cc>
+				<cc :propsEvent="propsEvent"></cc>
 			  </div>`,
 	components: {
 		'cc': cc
@@ -21,6 +21,9 @@ new Vue({
 		handleClick() {
 			console.log(this.message);
 			this.message += 'x';
+		},
+		propsEvent() {
+			alert('success..');
 		}
 	}
 });

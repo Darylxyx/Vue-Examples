@@ -7,7 +7,12 @@ Vue.component('bb', {
 			text: 'component-b-msg'
 		}
 	},
-	props: ['prop'],
+	props: {
+		prop: {
+			type: String,
+			required: true
+		}
+	},
 	methods: {
 		handlClick() {
 			alert(1);

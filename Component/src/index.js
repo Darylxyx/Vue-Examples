@@ -1,15 +1,26 @@
 import './main.css';
 import Vue from 'vue/dist/vue.js';
 
-import App from './component/A.vue';
+// import app from './component/A.vue';
+import './component/B.js';
+import cc from './component/C.js';
 
 new Vue({
 	el: '#demo',
 	data: {
 		message: 'Hello world'
 	},
-	// render: h => h(App)
-	render(createElment) {
-		return createElment(App);
+	template: `<div @click="handleClick" class="container">
+				<bb :prop="message"></bb>
+				<cc></cc>
+			  </div>`,
+	components: {
+		'cc': cc
+	},
+	methods: {
+		handleClick() {
+			console.log(this.message);
+			this.message += 'x';
+		}
 	}
 });

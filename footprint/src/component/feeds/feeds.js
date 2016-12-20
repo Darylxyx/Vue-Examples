@@ -7,6 +7,7 @@ Vue.component('feeds', {
 			feedsList: []
 		}
 	},
+
 	template: `<div class="feeds">
 				<div class="feeds-item" v-for="item in feedsList">
 					<div class="feeds-author overflow">
@@ -19,8 +20,12 @@ Vue.component('feeds', {
 						</div>
 					</div>
 					<div class="feeds-media">
-						<div class="feeds-media-row overflow">
-							<div class="feeds-media-item media-item-1 bg-img"></div>
+						<div v-for="item0 in item.feedsMatrix" class="feeds-media-row overflow">
+							<div v-for="item1 in item0" 
+								:class="[item0.lenght > 2 ? 'media-item-3' : item0.length == 1 ? 'media-item-1' : 'media-item-2', 'feeds-media-item', 'bg-img', 'l']"
+								:style="{backgroundImage: 'url('+item1.imageSpec[1].url+')'}"
+							>
+							</div>
 						</div>
 					</div>
 					<p class="f-15 c-47 lh-130" style="margin-bottom: 18px;">{{item.content}}</p>
@@ -43,7 +48,32 @@ Vue.component('feeds', {
 					</div>
 				</div>
 			  </div>`,
+	methods: {
+		createMatrix() {
+			this.feedsList.forEach((item, index) => {
+				let Matrix = [];
+				let arr = [];
 
+				if (item.images.length < 3) {
+					item.images.forEach((item0, index0) => {
+						arr.push(item0);
+					});
+					Matrix.push(arr);
+				} else {
+					item.images.forEach((item0, index0) => {
+						console.log(item0);
+						arr.push(item0);
+						if ((index0+1) % 3 == 0) {
+							Matrix.push(arr);
+							arr = [];
+						}
+					});
+				}
+				item.feedsMatrix = Matrix;
+			});
+			console.log(this.feedsList);
+		}
+	},
 	mounted() {
 		let data0 = {
 			profileId: 'SportsDayDFW:twitter',
@@ -53,70 +83,11 @@ Vue.component('feeds', {
 			lastTp: 0
 		};
 		server(data0, '/api/v3/user/post', (res) => {
-			console.log(res);
+			// console.log(res);
 			if (res.meta.statusCode == 200) {
 				this.feedsList = res.content;
+				this.createMatrix();
 			}
 		});
 	}
 });
-
-				// <div class="feeds-item">
-				// 	<div class="feeds-author overflow">
-				// 		<div class="feeds-avatar l bg-img">
-				// 			<div class="bg-img"></div>
-				// 		</div>
-				// 		<div class="l">
-				// 			<p class="f-15 f-bold" style="margin:8px 0 2px 0;">Beyonce</p>
-				// 			<p class="c-9b">2016-3-18 / 21:17</p>
-				// 		</div>
-				// 	</div>
-				// 	<div class="feeds-media">
-				// 		<div class="feeds-media-row overflow">
-				// 			<div class="feeds-media-item media-item-2 bg-img l"></div>
-				// 			<div class="feeds-media-item media-item-2 bg-img l"></div>
-				// 		</div>
-				// 	</div>
-				// 	<p class="f-15 c-47 lh-130" style="margin-bottom: 18px;">Sunday night Korean food dinner with love one. for me, there’s no better way to close out a week.</p>
-				// 	<div class="overflow feeds-contral">
-				// 		<img class="l" src="${require('../../images/like.png')}" />
-				// 		<span class="c-47 f-bold l" style="margin-right: 23px;">32</span>
-				// 		<img class="l" src="${require('../../images/comment.png')}" />
-				// 		<span class="c-47 f-bold l">29</span>
-				// 	</div>
-				// </div>
-				// <div class="feeds-item">
-				// 	<div class="feeds-author overflow">
-				// 		<div class="feeds-avatar l bg-img">
-				// 			<div class="bg-img"></div>
-				// 		</div>
-				// 		<div class="l">
-				// 			<p class="f-15 f-bold" style="margin:8px 0 2px 0;">Beyonce</p>
-				// 			<p class="c-9b">2016-3-18 / 21:17</p>
-				// 		</div>
-				// 	</div>
-				// 	<div class="feeds-media">
-				// 		<div class="feeds-media-row overflow">
-				// 			<div class="feeds-media-item media-item-3 bg-img l"></div>
-				// 			<div class="feeds-media-item media-item-3 bg-img l"></div>
-				// 			<div class="feeds-media-item media-item-3 bg-img l"></div>
-				// 		</div>
-				// 		<div class="feeds-media-row overflow">
-				// 			<div class="feeds-media-item media-item-3 bg-img l"></div>
-				// 			<div class="feeds-media-item media-item-3 bg-img l"></div>
-				// 			<div class="feeds-media-item media-item-3 bg-img l"></div>
-				// 		</div>
-				// 		<div class="feeds-media-row overflow">
-				// 			<div class="feeds-media-item media-item-3 bg-img l"></div>
-				// 			<div class="feeds-media-item media-item-3 bg-img l"></div>
-				// 			<div class="feeds-media-item media-item-3 bg-img l"></div>
-				// 		</div>
-				// 	</div>
-				// 	<p class="f-15 c-47 lh-130" style="margin-bottom: 18px;">Sunday night Korean food dinner with love one. for me, there’s no better way to close out a week.</p>
-				// 	<div class="overflow feeds-contral">
-				// 		<img class="l" src="${require('../../images/like.png')}" />
-				// 		<span class="c-47 f-bold l" style="margin-right: 23px;">32</span>
-				// 		<img class="l" src="${require('../../images/comment.png')}" />
-				// 		<span class="c-47 f-bold l">29</span>
-				// 	</div>
-				// </div>

@@ -9,7 +9,7 @@ Vue.component('banner', {
 						<div class="bg-img border-box" :style="{backgroundImage: 'url('+avatar+')'}"></div>
 					</div>
 					<span class="f-15 f-bold c-white star-name">{{nickName}}</span>
-					<p class="c-white banner-desc">{{desc}}</p>
+					<p v-if="desc" class="c-white banner-desc" style="margin-top:8px;">{{desc}}</p>
 					<p class="c-white" style="margin: 13px 0 18px 0">Followers {{followCount}}</p>
 					<div class="inline-block overflow">
 						<div class="border-box banner-follow c-white l">+ follow</div>

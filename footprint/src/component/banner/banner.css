@@ -15,7 +15,7 @@
 	width: 70px;
 	height: 70px;
 	border-radius: 35px;
-	margin: 30px auto 3px auto;
+	margin: 30px auto 4px auto;
 	
 	background-image: url(../../images/default.png);
 }
@@ -29,7 +29,6 @@
 
 .star-name {
 	display: inline-block;
-	margin-bottom: 8px;
 }
 
 .banner-desc {

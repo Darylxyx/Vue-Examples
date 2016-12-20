@@ -1,0 +1,100 @@
+html, body, div, h1, h2, h3, h4, h5, h6, p, span, img, input, ul, ol, li {
+	margin: 0;
+	padding: 0;
+}
+
+ul, ol {
+	list-style-type: none;
+}
+
+html, body {
+	font-size: 12px;
+	font-family: '微软雅黑', Arial, Helvetica;
+	background-color: #EFEFEF;
+}
+
+.container {
+	width: 100%;
+	position: relative;
+}
+
+.l {
+	float: left;
+}
+
+.r {
+	float: right;
+}
+
+.bg-img {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.f-14 {
+	font-size: 14px;
+}
+
+.f-15 {
+	font-size: 15px;
+}
+
+.f-bold {
+	font-weight: bold;
+}
+
+.c-white {
+	color: #fff;
+}
+
+.c-1b {
+	color: #1b1b1b;
+}
+
+.c-15 {
+	color: #151515;
+}
+
+.c-9b {
+	color: #9b9b9b;
+}
+
+.c-01 {
+	color: #010101;
+}
+
+.c-02 {
+	color: #020202;
+}
+
+.c-47 {
+	color: #474747;
+}
+
+.lh-130 {
+	line-height: 130%;
+}
+
+.lh-150 {
+	line-height: 150%;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.border-box {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.overflow {
+	overflow: hidden;
+}
+
+.text-overflow {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

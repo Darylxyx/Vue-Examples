@@ -1,0 +1,9 @@
+.download-bar {
+	width: 240px;
+	height: 27px;
+	background-color: #1a1a1a;
+	text-align: center;
+	line-height: 27px;
+	border-radius: 27px;
+	margin: 28px auto 33px auto;
+}

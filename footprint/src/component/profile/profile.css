@@ -1,0 +1,60 @@
+.profile {
+	padding: 15px 17px 40px 17px;
+	background-color: #fff;
+}
+
+.profile-area {
+	width: 100%;
+}
+
+.profile-shrink {
+	height: 120px;
+}
+
+.profile .more {
+	width: 90px;
+	height: 27px;
+	border-radius: 27px;
+	border: 1px solid #000;
+	margin: 30px auto;
+	text-align: center;
+	line-height: 25px;
+}
+
+.profile .related {
+	margin-top: 18px;
+	overflow: hidden;
+	position: relative;
+}
+
+.profile .related ul {
+	width: 100%;
+	left: 0;
+	top: 0;
+}
+
+.profile .related li {
+	width: 68px;
+	margin-right: 13px;
+	float: left;
+}
+
+.related-avatar {
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	background-image: url(../../images/default.png);
+	margin: 0 auto 8px auto;
+}
+
+.related-avatar div {
+	width: 100%;
+	height: 100%;
+	border-radius: 25px;
+	/*background-color: red;*/
+}
+
+.profile .related li p {
+	text-align: center;
+}
+

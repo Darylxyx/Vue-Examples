@@ -45,6 +45,7 @@
 	border-radius: 25px;
 	background-image: url(../../images/default.png);
 	margin: 0 auto 8px auto;
+	position: relative;
 }
 
 .related-avatar div {

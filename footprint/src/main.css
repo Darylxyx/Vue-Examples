@@ -13,6 +13,10 @@ html, body {
 	background-color: #EFEFEF;
 }
 
+a {
+	text-decoration: none;
+}
+
 .container {
 	width: 100%;
 	position: relative;
@@ -97,4 +101,11 @@ html, body {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.plat-icon {
+	width: 18px;
+	position: absolute;
+	bottom: -2px;
+	right: 0;
 }

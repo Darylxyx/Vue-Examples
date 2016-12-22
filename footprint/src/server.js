@@ -55,7 +55,7 @@
 
 			opts.jsonpCallback = opts.jsonpCallback || 'callback';
 
-			var callbackName = 'jsonp_' + (new Date()).getTime();
+			var callbackName = 'Jsonp_' + Math.ceil((Math.random() * 1E12));
 
 			opts.data[opts.jsonpCallback] = callbackName;
 
@@ -65,17 +65,17 @@
 				oScript = document.createElement('script');
 			oHead.appendChild(oScript);
 
-			//创建回调函数
-			window[callbackName] = function(json) {
-				oHead.removeChild(oScript);
-				window[callbackName] = null;
-				window.clearTimeout(oScript.timer);
-				opts.success && opts.success(json);
-				opts.done && opts.done(json);
-			};
-
 			//发起请求
 			oScript.src = opts.url + '?' + params;
+
+			//创建回调函数
+			window[callbackName] = function(json) {
+				opts.success && opts.success(json);
+				opts.done && opts.done(json);
+				oHead.removeChild(oScript);
+				window[callbackName] = null;	
+				window.clearTimeout(oScript.timer);
+			};
 
 			if (opts.time) {
 				oScript.timer = window.setTimeout(function() {

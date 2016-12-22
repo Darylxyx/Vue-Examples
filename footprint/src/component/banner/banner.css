@@ -16,11 +16,11 @@
 	height: 70px;
 	border-radius: 35px;
 	margin: 30px auto 4px auto;
-	
+	position: relative;
 	background-image: url(../../images/default.png);
 }
 
-.banner-avatar > div {
+.banner-avatar div {
 	width: 100%;
 	height: 100%;
 	border-radius: 35px;
@@ -29,6 +29,14 @@
 
 .star-name {
 	display: inline-block;
+	position: relative;
+}
+
+.star-name .vip {
+	width: 12px;
+	position: absolute;
+	top: 3px;
+	right: -16px;
 }
 
 .banner-desc {
@@ -58,6 +66,14 @@
 	background-repeat: no-repeat;
 	background-size: 9px;
 	background-position: center;
+	-webkit-transition: all linear 0.3s;
+	transition: all linear 0.3s;
+}
+
+.arrow-open {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 
 .banner-menu {
@@ -82,5 +98,35 @@
 	position: absolute;
 	top: 10px;
 	left: 50%;
+}
+
+.recommend-list {
+	width: 100%;
+	background-color: #efefef;
+}
+
+.recommend-list li {
+	width: 100%;
+	padding: 15px 14px;
+	border-top: 1px solid #e8e8e8;
+}
+
+.recommend-list li:first-child {
+	border: none;
+}
+
+.recommend-list .text-area {
+	width: 50%;
+}
+
+.btn-follow {
+	width: 64px;
+	height: 22px;
+	background-color: #1b1b1b;
+	border-radius: 11px;
+	text-align: center;
+	line-height: 22px;
+	color: #fff;
+	margin-top: 14px;
 }
 

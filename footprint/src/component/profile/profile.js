@@ -9,6 +9,7 @@ Vue.component('profile', {
 			relatedList: []
 		}
 	},
+	props: ['params', 'isVip', 'platIcon'],
 	template: `<div class="profile">
 				<div :class="['profile-area', 'f-15', 'overflow', isSpread ? '' : 'profile-shrink']">
 					<template v-for="item in profileList">
@@ -20,9 +21,10 @@ Vue.component('profile', {
 			  	<p class="f-15 f-bold">RELATED CELEBRITIES</p>
 			  	<div class="related">
 			  		<ul class="overflow" :style="{width: relatedList.length * 81 + 'px'}">
-			  			<li v-for="item in relatedList">
+			  			<li @click="handleLink(item.profileId)" v-for="item in relatedList">
 			  				<div class="related-avatar bg-img">
 			  					<div class="bg-img" :style="{backgroundImage: 'url('+item.avatar+')'}"></div>
+			  					<img class="plat-icon" :src="platIcon[item.platform]" />
 			  				</div>
 			  				<p class="c-1b f-bold text-overflow">{{item.nickName}}</p>
 			  			</li>
@@ -32,14 +34,30 @@ Vue.component('profile', {
 	methods: {
 		handleSpread() {
 			this.isSpread = true;
+		},
+		handleLink(profileId) {
+			console.log(profileId);
+			// console.log(`${window.location.href.split('?')[0]}?profileId=${profileId}&locale=${this.params.locale}`);
+			window.location.href = `${window.location.href.split('?')[0]}?profileId=${profileId}&locale=${this.params.locale}`;
 		}
 	},
-	mounted() {
+	created() {
+
+		if (!this.isVip) {
+			return;
+		}
+
+		let {
+			profileId,
+			userId,
+			locale
+		} = this.params;
+
 		let data0 = {
 			profileId: '23410080:instagram',
-			locale: 'zh_CN'
+			locale
 		};
-		server(data0, '/api/v3/user/profile', (res) => {
+		global.server(data0, global.host+'/api/v3/user/profile', (res) => {
 			// console.log(res);
 			if (res.meta.statusCode == 200) {
 				this.profileList = JSON.parse(res.content);
@@ -47,9 +65,9 @@ Vue.component('profile', {
 		});
 
 		let data1 = {
-			profileId: '5658420858:weibo'
+			profileId
 		};
-		server(data1, '/api/v3/user/relate', (res) => {
+		global.server(data1, global.host+'/api/v3/user/relate', (res) => {
 			// console.log(res);
 			if (res.meta.statusCode == 200) {
 				this.relatedList = res.content;

@@ -36,7 +36,7 @@ Vue.component('feeds', {
 							>
 								<img class="play-icon" src="${require('../../images/play.png')}" />
 							</div>
-							<video v-show="currentPlayer==item.postId" controls="controls" preload="preload" src="http://cn-cq3-dx.acgvideo.com/vg5/2/56/5630229-1.mp4?expires=1482416400&ssig=acp63GDr_xNIgu96boCJNg&oi=3723336772&rate=150000"></video>
+							<video v-show="currentPlayer==item.postId" controls="controls" preload="preload" :src="item.video.videoUrl"></video>
 						</div>
 					</div>
 					<p class="f-15 c-47 lh-130" style="margin-bottom: 18px;">{{item.content}}</p>

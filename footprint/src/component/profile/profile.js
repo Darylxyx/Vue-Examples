@@ -57,7 +57,7 @@ Vue.component('profile', {
 			profileId: '23410080:instagram',
 			locale
 		};
-		global.server(data0, global.host+'/api/v3/user/profile', (res) => {
+		global.server(data0, './src/component/profile/profile.json', (res) => { //global.host+'/api/v3/user/profile'
 			// console.log(res);
 			if (res.meta.statusCode == 200) {
 				this.profileList = JSON.parse(res.content);
@@ -67,7 +67,7 @@ Vue.component('profile', {
 		let data1 = {
 			profileId
 		};
-		global.server(data1, global.host+'/api/v3/user/relate', (res) => {
+		global.server(data1, './src/component/profile/relate.json', (res) => {
 			// console.log(res);
 			if (res.meta.statusCode == 200) {
 				this.relatedList = res.content;

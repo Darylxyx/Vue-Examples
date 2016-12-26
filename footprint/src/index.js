@@ -19,7 +19,7 @@ global.server = (data, url, callback, type) => {
 		data: data || {},
 		type: type || 'get',
 		url: url,
-		dataType: 'jsonp',
+		// dataType: 'jsonp',
 		done: (res) => {
 			callback && callback(res);
 		}

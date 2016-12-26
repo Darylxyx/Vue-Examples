@@ -115,8 +115,8 @@ Vue.component('feeds', {
 			pageSize: 5,
 			lastTp: 0
 		};
-		global.server(data0, global.host+'/api/v3/user/post', (res) => {
-			console.log(res);
+		global.server(data0, './src/component/feeds/post.json', (res) => {
+			// console.log(res);
 			if (res.meta.statusCode == 200) {
 				this.feedsList = res.content;
 				this.createMatrix();

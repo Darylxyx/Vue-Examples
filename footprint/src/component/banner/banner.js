@@ -71,7 +71,7 @@ Vue.component('banner', {
 			userId,
 			locale
 		};
-		global.server(data0, global.host+'/api/v3/user/info', (res) => {
+		global.server(data0, './src/component/banner/info.json', (res) => {
 			console.log(res);
 			if (res.meta.statusCode == 200) {
 				let result = res.content;
@@ -88,7 +88,7 @@ Vue.component('banner', {
 			userId,
 			locale
 		};
-		global.server(data1, global.host+'/api/v3/user/recommend', (res) => {
+		global.server(data1, './src/component/banner/recommend.json', (res) => {
 			// console.log(res);
 			if (res.meta.statusCode == 200) {
 				this.recommendList = res.content;

@@ -8,7 +8,7 @@ import './component/download/download.js';
 import './component/feeds/feeds.js';
 import './component/profile/profile.js';
 
-let host = 'http://stage.pub.hzvb.kankanapp.com.cn';
+let host = '';
 
 window.global = {};
 

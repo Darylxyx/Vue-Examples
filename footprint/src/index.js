@@ -8,9 +8,22 @@ import './component/download/download.js';
 import './component/feeds/feeds.js';
 import './component/profile/profile.js';
 
-let host = window.location.href.indexOf('h5.kankanapp.com.cn') != -1 ? 'https://prod-api.kankanapp.com.cn' : 'http://stage.pub.hzvb.kankanapp.com.cn';
+let host = 'http://stage.pub.hzvb.kankanapp.com.cn';
 
 window.global = {};
+
+Ajax({
+	data: {
+		profileId: '5704696797:weibo',
+		locale: 'zh_CN',
+		userId: '6257'
+	},
+	type: 'get',
+	url: 'http://172.16.0.47:9000/api/v3/user/info',
+	done: (res) => {
+		console.log(res);
+	}
+})
 
 global.host = host;
 

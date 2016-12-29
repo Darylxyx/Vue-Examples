@@ -1,3 +1,3 @@
 # Vue-Demo
 
-### Demo build with Vue.js
+Some application build with Vue.js

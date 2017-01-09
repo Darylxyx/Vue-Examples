@@ -14,7 +14,9 @@ new Vue({
 	template: `<div @click="handleClick" class="container">
 				<bb :prop="message"></bb>
 				<cc :propsEvent="propsEvent"></cc>
-				<component-d></component-d>
+				<component-d>
+					<strong>childsss</strong>
+				</component-d>
 			  </div>`,
 	components: {
 		'cc': cc

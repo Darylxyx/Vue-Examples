@@ -4,6 +4,7 @@ import Vue from 'vue/dist/vue.js';
 // import app from './component/A.vue';
 import './component/B.js';
 import cc from './component/C.js';
+import './component/D.js';
 
 new Vue({
 	el: '#demo',
@@ -13,6 +14,7 @@ new Vue({
 	template: `<div @click="handleClick" class="container">
 				<bb :prop="message"></bb>
 				<cc :propsEvent="propsEvent"></cc>
+				<component-d></component-d>
 			  </div>`,
 	components: {
 		'cc': cc

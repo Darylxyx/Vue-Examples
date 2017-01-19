@@ -1,4 +1,7 @@
 import Vue from 'vue/dist/vue.js';
+import { mapState } from 'vuex';
+
+console.log(mapState);
 
 const Child = {
 	template: `<h1>Child Component is {{childCount}}</h1>`,

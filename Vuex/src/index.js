@@ -1,6 +1,6 @@
 import './main.css';
 import Vue from 'vue/dist/vue.js';
-import Child from './component/child.js';
+import States from './component/state.js';
 // console.log(Vuex);
 
 Vue.use(Vuex);
@@ -29,9 +29,9 @@ new Vue({
 	store,
 	template: `<div>
 				<h1>{{count}}</h1>
-				<child></child>
+				<states></states>
 			  </div>`,
-	components: {Child},
+	components: {States},
 	computed: {
 		count() {
 			return store.state.count

@@ -1,8 +1,7 @@
 import './main.css';
 import Vue from 'vue/dist/vue.js';
-import Vuex from 'vuex';
-
 import Child from './component/child.js';
+// console.log(Vuex);
 
 Vue.use(Vuex);
 
@@ -20,8 +19,8 @@ const store = new Vuex.Store({
 	}
 });
 
-store.dispatch('increment');
-store.dispatch('increment');
+store.commit('increment');
+store.commit('increment');
 
 console.log(store.state.count);
 

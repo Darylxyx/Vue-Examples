@@ -1,5 +1,7 @@
 import Vue from 'vue/dist/vue.js';
-import { mapState } from 'vuex';
+// import { mapState } from 'vuex';
+
+let { mapState } = Vuex;
 
 console.log(mapState);
 

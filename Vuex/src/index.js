@@ -1,6 +1,7 @@
 import './main.css';
 import Vue from 'vue/dist/vue.js';
 import States from './component/state.js';
+import './component/getters.js';
 // console.log(Vuex);
 
 Vue.use(Vuex);

@@ -9,12 +9,24 @@ const store = new Vuex.Store({
 		todos: [
 			{ text: 'todo_A', done: true },
 			{ text: 'todo_B', done: false }
-		]
+		],
+		number: 1
 	},
 	getters: {
-		doneTodos(state) {
-			console.log(this);
-			return state.todos.filter(item => item.done);
+		doneTodos(state, getters) {
+			console.log(this); //undefined
+			console.log(getters);
+
+			let str = '';
+			state.todos.forEach((item) => {
+				if (item.done) {
+					str += item.text;
+				}
+			});
+			return str + '_' + getters.addNum;
+		},
+		addNum(state) {
+			return state.number + 5;
 		}
 	}
 });

@@ -1,7 +1,7 @@
 import './main.css';
 import Vue from 'vue/dist/vue.js';
 import States from './component/state.js';
-import './component/getters.js';
+import Getters from './component/getters.js';
 // console.log(Vuex);
 
 Vue.use(Vuex);
@@ -31,8 +31,9 @@ new Vue({
 	template: `<div>
 				<h1>{{count}}</h1>
 				<states></states>
+				<getters></getters>
 			  </div>`,
-	components: {States},
+	components: {States, Getters},
 	computed: {
 		count() {
 			return store.state.count

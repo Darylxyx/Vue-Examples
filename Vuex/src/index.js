@@ -2,7 +2,7 @@ import './main.css';
 import Vue from 'vue/dist/vue.js';
 import States from './component/state.js';
 import Getters from './component/getters.js';
-// console.log(Vuex);
+import Mutations from './component/mutation.js';
 
 Vue.use(Vuex);
 
@@ -32,8 +32,9 @@ new Vue({
 				<h1>{{count}}</h1>
 				<states></states>
 				<getters></getters>
+				<Mutations></Mutations>
 			  </div>`,
-	components: {States, Getters},
+	components: {States, Getters, Mutations},
 	computed: {
 		count() {
 			return store.state.count

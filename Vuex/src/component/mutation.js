@@ -7,13 +7,17 @@ const store = new Vuex.Store({
 		count: 0
 	},
 	mutations: {
-		addCount(state) {
-			state.count++;
+		addCount(state, data) {
+			state.count += data.num;
+			state.count += data.text;
 		}
 	}
 });
 
-store.commit('addCount');
+store.commit('addCount', {
+	num: 10,
+	text: '*'
+});
 
 // console.log(store.state.count);
 

@@ -3,30 +3,50 @@ let { mapState, mapActions } = Vuex;
 
 const store = new Vuex.Store({
 	state: {
-		count: 0
+		count: 0,
+		asyncFlag: false
 	},
 	mutations: {
 		addCount(state) {
 			state.count++;
+		},
+		tunrFlag(state) {
+			state.asyncFlag = true;
 		}
 	},
 	actions: {
 		addCount(store) {
 			store.commit('addCount');
+		},
+		asyncActionA() {
+			return new Promise((resolve, rejecte) => {
+				setTimeout(() => {
+					store.commit('tunrFlag');
+					resolve();
+				}, 2000);
+			})
+		},
+		asyncActionB(store, date) {
+			return store.dispatch('asyncActionA').then(() => {
+				console.log('Flag turn completed at: ', date);
+			});
 		}
 	}
 });
 
 store.dispatch('addCount');
 
-// console.log('actions:',store.state.count);
+store.dispatch('asyncActionB', {
+	date: new Date()
+});
 
 const Actions = {
 	store,
-	template: `<h1 @click="addCount">Actions {{count}}</h1>`,
+	template: `<h1 @click="addCount">Actions {{count}}, AsyncFlag: {{asyncFlag}}</h1>`,
 	computed: {
 		...mapState({
-			count: 'count'
+			count: 'count',
+			asyncFlag: 'asyncFlag'
 		})
 	},
 	methods: {

@@ -1,4 +1,5 @@
 import Vue from 'vue/dist/vue.js';
+let { mapState, mapActions } = Vuex;
 
 const store = new Vuex.Store({
 	state: {
@@ -18,11 +19,21 @@ const store = new Vuex.Store({
 
 store.dispatch('addCount');
 
-console.log('actions:',store.state.count);
+// console.log('actions:',store.state.count);
 
 const Actions = {
 	store,
-	template: `<h1>Actions</h1>`
+	template: `<h1 @click="addCount">Actions {{count}}</h1>`,
+	computed: {
+		...mapState({
+			count: 'count'
+		})
+	},
+	methods: {
+		...mapActions([
+			'addCount'
+		])
+	}
 };
 
 export default Actions;

@@ -26,9 +26,9 @@ const store = new Vuex.Store({
 				}, 2000);
 			})
 		},
-		asyncActionB(store, date) {
-			return store.dispatch('asyncActionA').then(() => {
-				console.log('Flag turn completed at: ', date);
+		asyncActionB({ dispatch }, params) {
+			return dispatch('asyncActionA').then(() => {
+				console.log('Flag turn completed at: ', params.date);
 			});
 		}
 	}
@@ -37,7 +37,7 @@ const store = new Vuex.Store({
 store.dispatch('addCount');
 
 store.dispatch('asyncActionB', {
-	date: new Date()
+	date: (new Date()).getTime()
 });
 
 const Actions = {

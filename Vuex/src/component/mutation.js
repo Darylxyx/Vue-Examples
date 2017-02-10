@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
 	state: {
-		count: 0,
+		countass: 0,
 		obj: {
 			a: 'a',
 			b: 'b',
@@ -22,26 +22,36 @@ const store = new Vuex.Store({
 			// mutation中对对象添加属性，不可在原对象上添加
 			state.obj = {...state.obj, d: 'd'};
 			console.log(state.obj);
+		},
+		asyncMutation(state) {
+			setTimeout(() => {
+				// console.log('asyncMutation');
+				state.countass ++;
+			}, 3000);
 		}
 	}
 });
 
-store.commit('addCount', {
-	num: 10,
-	text: '*'
-});
+// console.log(store.state.countass);
+store.commit('asyncMutation');
+
+// store.commit('addCount', {
+// 	num: 10,
+// 	text: '*'
+// });
 
 store.commit('addObj');
 
 // console.log(store.state.count);
 
 const Mutations = {
+	store,
 	template: `<div>
 				<h1>Mutations count is {{count}}</h1>
 				<h1>Mutations obj is {{obj}}</h1>
 			  </div>`,
 	computed: mapState({
-		count: 'count',
+		count: 'countass',
 		obj(state) {
 			console.log(state);
 			// 这里的state为根节点state，所以需要state单一

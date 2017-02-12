@@ -14,12 +14,12 @@ window.global = {};
 
 global.host = host;
 
-global.server = (data, url, callback, type) => {
+global.server = (data, url, callback, type, dataType) => {
 	Ajax({
 		data: data || {},
 		type: type || 'get',
 		url: url,
-		// dataType: 'jsonp',
+		dataType: dataType || 'json',
 		done: (res) => {
 			callback && callback(res);
 		}

@@ -25,7 +25,7 @@ Vue.component('feeds', {
 					<div class="feeds-media">
 						<div v-if="item.postType=='image'" v-for="item0 in item.feedsMatrix" class="feeds-media-row overflow">
 							<div v-for="item1 in item0" 
-								:class="[item0.length > 2 ? 'media-item-3' : (item0.length == 1 ? 'media-item-1' : 'media-item-2'), 'feeds-media-item', 'bg-img', 'l']"
+								:class="[item.images.length > 2 ? 'media-item-3' : (item0.length == 1 ? 'media-item-1' : 'media-item-2'), 'feeds-media-item', 'bg-img', 'l']"
 								:style="{backgroundImage: 'url('+item1.imageSpec[1].url+')'}"
 							>
 							</div>
@@ -74,25 +74,22 @@ Vue.component('feeds', {
 			this.feedsList.forEach((item, index) => {
 				let Matrix = [];
 				let arr = [];
+				let max = item.images.length;
 
-				if (item.images.length < 3) {
-					item.images.forEach((item0, index0) => {
-						arr.push(item0);
-					});
-					Matrix.push(arr);
-				} else {
-					item.images.forEach((item0, index0) => {
-						// console.log(item0);
-						arr.push(item0);
-						if ((index0+1) % 3 == 0) {
-							Matrix.push(arr);
-							arr = [];
-						}
-					});
-				}
+				item.images.forEach((item0, index0) => {
+					arr.push(item0);
+					if ((index0+1) % 3 == 0) {
+						Matrix.push(arr);
+						arr = [];
+					}
+					if ((index0+1) == max) {
+						Matrix.push(arr);
+					}
+				});
+
 				item.feedsMatrix = Matrix;
 			});
-			// console.log(this.feedsList);
+			// console.log(this.feedsList[4].feedsMatrix);
 		},
 		formatTime(ms) {
 			let date = new Date(ms);
@@ -112,15 +109,15 @@ Vue.component('feeds', {
 			profileId,
 			userId,
 			page: 1,
-			pageSize: 5,
+			pageSize: 20,
 			lastTp: 0
 		};
-		global.server(data0, './src/component/feeds/post.json', (res) => {
+		global.server(data0, './src/component/feeds/post.json', (res) => {//global.host+'/api/v3/user/post'
 			// console.log(res);
 			if (res.meta.statusCode == 200) {
 				this.feedsList = res.content;
 				this.createMatrix();
 			}
-		});
+		}, 'get');
 	}
 });

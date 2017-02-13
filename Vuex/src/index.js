@@ -4,6 +4,7 @@ import States from './component/state.js';
 import Getters from './component/getters.js';
 import Mutations from './component/mutation.js';
 import Actions from './component/actions.js';
+import './component/modules.js';
 
 Vue.use(Vuex);
 

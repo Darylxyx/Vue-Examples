@@ -25,11 +25,6 @@ new Vue({
 	// 	}
 	// },
 	created() {
-		this.$store.commit('queryParams');
-		console.log(this.$store.state);
-		// console.log(this.queryParams());
-		// this.params = this.queryParams() || {};
-		// this.params.userId = this.params.userId || '';
-		// this.params.locale = this.params.locale || 'zh_CN';
+	
 	}
 });

@@ -72,4 +72,6 @@ const store = new Vuex.Store({
 	}
 });
 
+store.commit('queryParams');
+
 export default store;

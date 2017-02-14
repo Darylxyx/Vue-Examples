@@ -60,39 +60,39 @@ Vue.component('banner', {
 	},
 
 	created() {
-		let {
-			profileId,
-			userId,
-			locale
-		} = this.params;
+		// let {
+		// 	profileId,
+		// 	userId,
+		// 	locale
+		// } = this.params;
 
-		let data0 = {
-			profileId,
-			userId,
-			locale
-		};
-		global.server(data0, './src/component/banner/info.json', (res) => {
-			console.log(res);
-			if (res.meta.statusCode == 200) {
-				let result = res.content;
-				this.avatar = result.avatar;
-				this.nickName = result.nickname;
-				this.desc = result.description;
-				this.followCount = result.followers;
-				this.platform = result.platform;
-			}
-		});
+		// let data0 = {
+		// 	profileId,
+		// 	userId,
+		// 	locale
+		// };
+		// global.server(data0, './src/component/banner/info.json', (res) => {
+		// 	console.log(res);
+		// 	if (res.meta.statusCode == 200) {
+		// 		let result = res.content;
+		// 		this.avatar = result.avatar;
+		// 		this.nickName = result.nickname;
+		// 		this.desc = result.description;
+		// 		this.followCount = result.followers;
+		// 		this.platform = result.platform;
+		// 	}
+		// });
 
-		let data1 = {
-			profileId,
-			userId,
-			locale
-		};
-		global.server(data1, './src/component/banner/recommend.json', (res) => {
-			// console.log(res);
-			if (res.meta.statusCode == 200) {
-				this.recommendList = res.content;
-			}
-		});
+		// let data1 = {
+		// 	profileId,
+		// 	userId,
+		// 	locale
+		// };
+		// global.server(data1, './src/component/banner/recommend.json', (res) => {
+		// 	// console.log(res);
+		// 	if (res.meta.statusCode == 200) {
+		// 		this.recommendList = res.content;
+		// 	}
+		// });
 	}
 });

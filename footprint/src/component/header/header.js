@@ -1,5 +1,6 @@
 import './header.css';
 import Vue from 'vue/dist/vue.js';
+let { mapActions } = Vuex;
 
 Vue.component('headers', {
 	template: `<div class="header overflow">
@@ -8,8 +9,8 @@ Vue.component('headers', {
 				<a @click="handleDownload" href="tanqu://home/test?p=12&d=1"><div class="download-btn r">前往探趣</div></a>
 			  </div>`,
 	methods: {
-		handleDownload() {
-			global.handleDownload();
-		}
+		...mapActions([
+			'handleDownload'
+		])
 	}
 });

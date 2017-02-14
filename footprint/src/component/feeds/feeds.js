@@ -1,15 +1,18 @@
 import './feeds.css';
 import Vue from 'vue/dist/vue.js';
-//2016-3-18 / 21:17
+
+let { mapState, mapMutations, mapActions } = Vuex;
+
 Vue.component('feeds', {
-	data() {
-		return {
-			prevPlayer: null,
-			currentPlayer: '',
-			feedsList: []
-		}
+	computed: {
+		...mapState({
+			params: 'params',
+			platIcon: 'platIcon',
+			feedsList: state => state.feeds.feedsList,
+			prevPlayer: state => state.feeds.prevPlayer,
+			currentPlayer: state => state.feeds.currentPlayer
+		})
 	},
-	props: ['params', 'platIcon'],
 	template: `<div class="feeds">
 				<div class="feeds-item" v-for="item in feedsList">
 					<div class="feeds-author overflow">
@@ -60,9 +63,6 @@ Vue.component('feeds', {
 				</div>
 			  </div>`,
 	methods: {
-		handleDownload() {
-			global.handleDownload();
-		},
 		handlePlay(postId, e) {
 			this.prevPlayer && this.prevPlayer.pause();
 			this.currentPlayer = postId;
@@ -70,54 +70,26 @@ Vue.component('feeds', {
 			video.play();
 			this.prevPlayer = video;
 		},
-		createMatrix() {
-			this.feedsList.forEach((item, index) => {
-				let Matrix = [];
-				let arr = [];
-				let max = item.images.length;
-
-				item.images.forEach((item0, index0) => {
-					arr.push(item0);
-					if ((index0+1) % 3 == 0) {
-						Matrix.push(arr);
-						arr = [];
-					}
-					if ((index0+1) == max) {
-						Matrix.push(arr);
-					}
-				});
-
-				item.feedsMatrix = Matrix;
-			});
-			// console.log(this.feedsList[4].feedsMatrix);
-		},
 		formatTime(ms) {
 			let date = new Date(ms);
 			let str = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} / ${date.getHours()}:${date.getMinutes()}`;
 			// console.log(str);
 			return str;
-		}
+		},
+		...mapMutations(['createMatrix', 'testCallback']),
+		...mapActions(['server', 'handleDownload'])
 	},
 	created() {
-		let {
-			profileId,
-			userId,
-			locale
-		} = this.params;
-
-		let data0 = {
-			profileId,
-			userId,
-			page: 1,
-			pageSize: 20,
-			lastTp: 0
-		};
-		global.server(data0, './src/component/feeds/post.json', (res) => {//global.host+'/api/v3/user/post'
-			// console.log(res);
-			if (res.meta.statusCode == 200) {
-				this.feedsList = res.content;
-				this.createMatrix();
-			}
-		}, 'get');
+		let data = this.params;
+		this.server({
+			data: data, 
+			url: './src/json/post.json', 
+			callback: (res) => {
+				if (res.meta.statusCode == 200) {
+					this.createMatrix(res.content);
+				}
+			}, 
+			type: 'get'
+		});
 	}
 });

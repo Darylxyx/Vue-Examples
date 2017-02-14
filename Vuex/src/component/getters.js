@@ -10,7 +10,8 @@ const store = new Vuex.Store({
 			{ text: 'todo_A', done: true },
 			{ text: 'todo_B', done: false }
 		],
-		number: 1
+		number: 1,
+		nowDate: new Date()
 	},
 	getters: {
 		doneTodos(state, getters) {
@@ -27,9 +28,15 @@ const store = new Vuex.Store({
 		},
 		addNum(state) {
 			return state.number + 5;
-		}
+		},
+		dateFormat(state, getters) {
+            let date = state.nowDate;
+            return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} / ${date.getHours()}:${date.getMinutes()}`;
+        }
 	}
 });
+
+console.log('The time is now:', store.getters.dateFormat);
 
 const Getters = {
 	store,

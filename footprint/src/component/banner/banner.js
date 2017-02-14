@@ -1,31 +1,30 @@
 import './banner.css';
 import Vue from 'vue/dist/vue.js';
 
+let { mapState, mapMutations, mapActions } = Vuex;
+
 Vue.component('banner', {
-	data() {
-		return {
-			avatar: '',
-			nickName: '',
-			desc: '',
-			followCount: 0,
-			platform: '',
-			recommendList: [],
-			recommendShow: false
-		};
+	computed: {
+		...mapState({
+			isVip: 'isVip',
+			params: 'params',
+			platIcon: 'platIcon',
+			authorInfo: state => state.banner.authorInfo
+		})
 	},
-	props: ['params', 'isVip', 'platIcon', 'changeMenu', 'menuType'],
+	// props: ['params', 'isVip', 'platIcon', 'changeMenu', 'menuType'],
 	template: `<div class="banner">
 				<div class="banner-con bg-img">
 					<div class="banner-avatar bg-img">
-						<div class="bg-img border-box" :style="{backgroundImage: 'url('+avatar+')'}"></div>
-						<img class="plat-icon" :src="platIcon[platform]" />
+						<div class="bg-img border-box" :style="{backgroundImage: 'url('+authorInfo.avatar+')'}"></div>
+						<img class="plat-icon" :src="platIcon[authorInfo.platform]" />
 					</div>
 					<div class="star-name">
-						<span class="f-15 f-bold c-white">{{nickName}}</span>
+						<span class="f-15 f-bold c-white">{{authorInfo.nickName}}</span>
 						<img v-if="isVip" class="vip" src="${require('../../images/vip.png')}" />
 					</div>
-					<p class="c-white banner-desc" style="margin-top:8px;">{{desc}}</p>
-					<p class="c-white" style="margin: 13px 0 18px 0">Followers {{followCount}}</p>
+					<p class="c-white banner-desc" style="margin-top:8px;">{{authorInfo.desc}}</p>
+					<p class="c-white" style="margin: 13px 0 18px 0">Followers {{authorInfo.followCount}}</p>
 					<div class="inline-block overflow">
 						<a @click="handleDownload" href="tanqu://home/test?p=12&d=1"><div class="border-box banner-follow c-white l">+ follow</div></a>
 						<div @click="recommendSwitch" :class="[recommendShow ? 'arrow-open' : '', 'banner-arrow', 'r']"></div>
@@ -51,26 +50,29 @@ Vue.component('banner', {
 				</div>
 			  </div>`,
 	methods: {
-		handleDownload() {
-			global.handleDownload();
-		},
-		recommendSwitch() {
-			this.recommendShow = !this.recommendShow;
-		}
+		// handleDownload() {
+		// 	global.handleDownload();
+		// },
+		// recommendSwitch() {
+		// 	this.recommendShow = !this.recommendShow;
+		// }
+		...mapMutations(['handleDownload', 'changeMenu']),
+		...mapActions(['server'])
 	},
 
 	created() {
-		// let {
-		// 	profileId,
-		// 	userId,
-		// 	locale
-		// } = this.params;
+		let data = this.params;
 
-		// let data0 = {
-		// 	profileId,
-		// 	userId,
-		// 	locale
-		// };
+		this.server({
+			data: data, 
+			url: './src/json/info.json', 
+			callback: (res) => {
+				if (res.meta.statusCode == 200) {
+					console.log(res);
+					this.authorInfo = res.content;
+				}
+			}
+		});
 		// global.server(data0, './src/component/banner/info.json', (res) => {
 		// 	console.log(res);
 		// 	if (res.meta.statusCode == 200) {

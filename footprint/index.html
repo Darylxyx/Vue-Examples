@@ -10,18 +10,8 @@
 <body>
 	<div id="container" class="container">
 		<headers></headers>
-<!-- 		<banner
-			:params="params"
-			:is-vip="isVip"
-			:plat-icon="platIcon"
-			:menu-type="menuType"
-			:change-menu="changeMenu"
-		>
-		</banner> -->
-		<feeds
-			v-show="menuType == 'feeds'"
-		>
-		</feeds>
+		<banner></banner>
+		<feeds v-show="menuType == 'feeds'"></feeds>
 <!-- 		<profile 
 			:params="params"
 			:is-vip="isVip"

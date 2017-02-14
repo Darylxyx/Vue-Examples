@@ -88,8 +88,7 @@ Vue.component('feeds', {
 				if (res.meta.statusCode == 200) {
 					this.createMatrix(res.content);
 				}
-			}, 
-			type: 'get'
+			}
 		});
 	}
 });

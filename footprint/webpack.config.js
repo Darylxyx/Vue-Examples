@@ -1,6 +1,5 @@
 var webpack = require('webpack'),
-	path = require('path'),
-	ExtractTextPlugin = require('extract-text-webpack-plugin');
+	path = require('path');
 
 module.exports = {
 	entry: './src/index.js',
@@ -12,7 +11,7 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.css$/,
-				loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+				loader: 'style-loader!css-loader'
 			},
 			{
 				test: /\.js$/,
@@ -25,7 +24,6 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin('bundle.css', {allChunks: true}),
 		new webpack.DefinePlugin({
 			'process.env': {
 				'NODE_ENV': JSON.stringify('development'), //development & production

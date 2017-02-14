@@ -5,31 +5,33 @@
     <meta name="description" content="">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-	<title>探趣</title>
-	<link rel="stylesheet" href="./bundle.css">
+	<title>Vue</title>
 </head>
 <body>
 	<div id="container" class="container">
 		<headers></headers>
-		<banner
+<!-- 		<banner
 			:params="params"
 			:is-vip="isVip"
 			:plat-icon="platIcon"
 			:menu-type="menuType"
 			:change-menu="changeMenu"
 		>
-		</banner>
-		<feeds 
-			:params="params"
-			:plat-icon="platIcon"
-			v-show="menuType == 'feeds'"></feeds>
-		<profile 
+		</banner> -->
+		<feeds
+			v-show="menuType == 'feeds'"
+		>
+		</feeds>
+<!-- 		<profile 
 			:params="params"
 			:is-vip="isVip"
 			:plat-icon="platIcon"
-			v-show="menuType == 'profile'"></profile>
+			v-show="menuType == 'profile'"
+		>
+		</profile> -->
 		<download></download>
 	</div>
+<script src="https://unpkg.com/vuex@2.0.0"></script>
 <script src="./bundle.js"></script>
 </body>
 </html>

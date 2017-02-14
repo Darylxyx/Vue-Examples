@@ -25,8 +25,9 @@ const moduleA = {
 	actions: {
 		maAction(context) {
 			console.log('moduleA action', context);
-			context.commit('maMutation');
-			context.commit('mbMutation');
+			// // context.commit('maMutation');
+			// // context.commit('mbMutation');
+			context.dispatch('mbAction');
 		}
 	}
 };
@@ -38,13 +39,23 @@ const moduleB = {
 		count: 2
 	},
 	getters: {
-		maGetter() {
+		mbGetter() {
 			return 'B';
 		}
 	},
 	mutations: {
-		mbMutation(state) {
+		maMutation(state) {
 			console.log('moduleB mutation', state);
+		},
+		sayCount(state, num) {
+			console.log('count::::',state.count+num);
+		}
+	},
+	actions: {
+		mbAction({ commit, rootState }) {
+			console.log('moduleB action', 11111111);
+			commit('maMutation');
+			commit('sayCount', rootState.a.count);
 		}
 	}
 };
@@ -75,4 +86,8 @@ console.log('ModuleA getters: ', store.getters);
 
 console.log('Add Getters:', store.getters.addCount);
 
+// store.commit('maMutation');
+
 store.dispatch('maAction');
+
+// store.dispatch('mbAction');

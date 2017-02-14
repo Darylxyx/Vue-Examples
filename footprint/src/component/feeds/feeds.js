@@ -1,15 +1,12 @@
 import './feeds.css';
 import Vue from 'vue/dist/vue.js';
-//2016-3-18 / 21:17
+
+let { mapState, mapActions } = Vuex;
+
 Vue.component('feeds', {
-	data() {
-		return {
-			prevPlayer: null,
-			currentPlayer: '',
-			feedsList: []
-		}
+	computed: {
+		...mapState(['prevPlayer', 'currentPlayer', 'feedsList'])
 	},
-	props: ['params', 'platIcon'],
 	template: `<div class="feeds">
 				<div class="feeds-item" v-for="item in feedsList">
 					<div class="feeds-author overflow">
@@ -96,24 +93,13 @@ Vue.component('feeds', {
 			let str = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} / ${date.getHours()}:${date.getMinutes()}`;
 			// console.log(str);
 			return str;
-		}
+		},
+		...mapActions(['server'])
 	},
 	created() {
-		let {
-			profileId,
-			userId,
-			locale
-		} = this.params;
+		let data0 = {};
 
-		let data0 = {
-			profileId,
-			userId,
-			page: 1,
-			pageSize: 20,
-			lastTp: 0
-		};
-		global.server(data0, './src/component/feeds/post.json', (res) => {//global.host+'/api/v3/user/post'
-			// console.log(res);
+		this.server(data0, './src/component/feeds/post.json', (res) => {
 			if (res.meta.statusCode == 200) {
 				this.feedsList = res.content;
 				this.createMatrix();

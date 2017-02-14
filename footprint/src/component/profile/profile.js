@@ -43,36 +43,36 @@ Vue.component('profile', {
 	},
 	created() {
 
-		if (!this.isVip) {
-			return;
-		}
+		// if (!this.isVip) {
+		// 	return;
+		// }
 
-		let {
-			profileId,
-			userId,
-			locale
-		} = this.params;
+		// let {
+		// 	profileId,
+		// 	userId,
+		// 	locale
+		// } = this.params;
 
-		let data0 = {
-			profileId: '23410080:instagram',
-			locale
-		};
-		global.server(data0, './src/component/profile/profile.json', (res) => { //global.host+'/api/v3/user/profile'
-			// console.log(res);
-			if (res.meta.statusCode == 200) {
-				this.profileList = JSON.parse(res.content);
-			}
-		});
+		// let data0 = {
+		// 	profileId: '23410080:instagram',
+		// 	locale
+		// };
+		// global.server(data0, './src/component/profile/profile.json', (res) => { //global.host+'/api/v3/user/profile'
+		// 	// console.log(res);
+		// 	if (res.meta.statusCode == 200) {
+		// 		this.profileList = JSON.parse(res.content);
+		// 	}
+		// });
 
-		let data1 = {
-			profileId
-		};
-		global.server(data1, './src/component/profile/relate.json', (res) => {
-			// console.log(res);
-			if (res.meta.statusCode == 200) {
-				this.relatedList = res.content;
-			}
-		});
+		// let data1 = {
+		// 	profileId
+		// };
+		// global.server(data1, './src/component/profile/relate.json', (res) => {
+		// 	// console.log(res);
+		// 	if (res.meta.statusCode == 200) {
+		// 		this.relatedList = res.content;
+		// 	}
+		// });
 	}
 });
 

@@ -63,13 +63,6 @@ Vue.component('feeds', {
 				</div>
 			  </div>`,
 	methods: {
-		test() {
-			console.log(this.$feedsList);
-		},
-		handleDownload() {
-			// global.handleDownload();
-			console.log(this.feedsList);
-		},
 		handlePlay(postId, e) {
 			this.prevPlayer && this.prevPlayer.pause();
 			this.currentPlayer = postId;
@@ -77,29 +70,23 @@ Vue.component('feeds', {
 			video.play();
 			this.prevPlayer = video;
 		},
-		// createMatrix() {
-			
-		// 	// console.log(this.feedsList[4].feedsMatrix);
-		// },
 		formatTime(ms) {
 			let date = new Date(ms);
 			let str = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} / ${date.getHours()}:${date.getMinutes()}`;
 			// console.log(str);
 			return str;
 		},
-		...mapMutations(['createMatrix']),
-		...mapActions(['server'])
+		...mapMutations(['createMatrix', 'testCallback']),
+		...mapActions(['server', 'handleDownload'])
 	},
 	created() {
-		let data0 = this.params;
+		let data = this.params;
 		this.server({
-			data: data0, 
+			data: data, 
 			url: './src/json/post.json', 
 			callback: (res) => {
-				// console.log(res);
 				if (res.meta.statusCode == 200) {
 					this.createMatrix(res.content);
-					// console.log(this.feedsList);
 				}
 			}, 
 			type: 'get'

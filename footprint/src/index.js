@@ -15,6 +15,8 @@ new Vue({
 	store,
 	data: {
 		params: null,
+	},
+	computed: {
 		...mapState(['menuType'])
 	},
 	// methods: {

@@ -7,11 +7,11 @@ import profile from './modules/profile.js';
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-	// modules: {
-	// 	banner,
-	// 	feeds,
-	// 	profile
-	// },
+	modules: {
+		// banner,
+		feeds,
+		// profile
+	},
 	state: {
 		params: {},
 		isVip: true,
@@ -43,8 +43,8 @@ const store = new Vuex.Store({
 		}
 	},
 	actions: {
-		server({ commit }, data, url, callback, type, dataType) {
-
+		server(context, params) {
+			let { data, url, callback, type, dataType } = params;
 			Ajax({
 				data: data || {},
 				type: type || 'get',

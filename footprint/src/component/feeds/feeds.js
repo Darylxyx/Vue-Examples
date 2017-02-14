@@ -1,11 +1,17 @@
 import './feeds.css';
 import Vue from 'vue/dist/vue.js';
 
-let { mapState, mapActions } = Vuex;
+let { mapState, mapMutations, mapActions } = Vuex;
 
 Vue.component('feeds', {
 	computed: {
-		...mapState(['prevPlayer', 'currentPlayer', 'feedsList'])
+		...mapState({
+			params: 'params',
+			platIcon: 'platIcon',
+			feedsList: state => state.feeds.feedsList,
+			prevPlayer: state => state.feeds.prevPlayer,
+			currentPlayer: state => state.feeds.currentPlayer
+		})
 	},
 	template: `<div class="feeds">
 				<div class="feeds-item" v-for="item in feedsList">
@@ -57,8 +63,12 @@ Vue.component('feeds', {
 				</div>
 			  </div>`,
 	methods: {
+		test() {
+			console.log(this.$feedsList);
+		},
 		handleDownload() {
-			global.handleDownload();
+			// global.handleDownload();
+			console.log(this.feedsList);
 		},
 		handlePlay(postId, e) {
 			this.prevPlayer && this.prevPlayer.pause();
@@ -67,43 +77,32 @@ Vue.component('feeds', {
 			video.play();
 			this.prevPlayer = video;
 		},
-		createMatrix() {
-			this.feedsList.forEach((item, index) => {
-				let Matrix = [];
-				let arr = [];
-				let max = item.images.length;
-
-				item.images.forEach((item0, index0) => {
-					arr.push(item0);
-					if ((index0+1) % 3 == 0) {
-						Matrix.push(arr);
-						arr = [];
-					}
-					if ((index0+1) == max) {
-						Matrix.push(arr);
-					}
-				});
-
-				item.feedsMatrix = Matrix;
-			});
-			// console.log(this.feedsList[4].feedsMatrix);
-		},
+		// createMatrix() {
+			
+		// 	// console.log(this.feedsList[4].feedsMatrix);
+		// },
 		formatTime(ms) {
 			let date = new Date(ms);
 			let str = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} / ${date.getHours()}:${date.getMinutes()}`;
 			// console.log(str);
 			return str;
 		},
+		...mapMutations(['createMatrix']),
 		...mapActions(['server'])
 	},
 	created() {
-		let data0 = {};
-
-		this.server(data0, './src/component/feeds/post.json', (res) => {
-			if (res.meta.statusCode == 200) {
-				this.feedsList = res.content;
-				this.createMatrix();
-			}
-		}, 'get');
+		let data0 = this.params;
+		this.server({
+			data: data0, 
+			url: './src/json/post.json', 
+			callback: (res) => {
+				// console.log(res);
+				if (res.meta.statusCode == 200) {
+					this.createMatrix(res.content);
+					// console.log(this.feedsList);
+				}
+			}, 
+			type: 'get'
+		});
 	}
 });

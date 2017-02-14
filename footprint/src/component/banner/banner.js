@@ -9,10 +9,12 @@ Vue.component('banner', {
 			isVip: 'isVip',
 			params: 'params',
 			platIcon: 'platIcon',
-			authorInfo: state => state.banner.authorInfo
+			menuType: 'menuType',
+			authorInfo: state => state.banner.authorInfo,
+			recommendShow: state => state.banner.recommendShow,
+			recommendList: state => state.banner.recommendList
 		})
 	},
-	// props: ['params', 'isVip', 'platIcon', 'changeMenu', 'menuType'],
 	template: `<div class="banner">
 				<div class="banner-con bg-img">
 					<div class="banner-avatar bg-img">
@@ -20,11 +22,11 @@ Vue.component('banner', {
 						<img class="plat-icon" :src="platIcon[authorInfo.platform]" />
 					</div>
 					<div class="star-name">
-						<span class="f-15 f-bold c-white">{{authorInfo.nickName}}</span>
+						<span class="f-15 f-bold c-white">{{authorInfo.nickname}}</span>
 						<img v-if="isVip" class="vip" src="${require('../../images/vip.png')}" />
 					</div>
-					<p class="c-white banner-desc" style="margin-top:8px;">{{authorInfo.desc}}</p>
-					<p class="c-white" style="margin: 13px 0 18px 0">Followers {{authorInfo.followCount}}</p>
+					<p class="c-white banner-desc" style="margin-top:8px;">{{authorInfo.description}}</p>
+					<p class="c-white" style="margin: 13px 0 18px 0">Followers {{authorInfo.followers}}</p>
 					<div class="inline-block overflow">
 						<a @click="handleDownload" href="tanqu://home/test?p=12&d=1"><div class="border-box banner-follow c-white l">+ follow</div></a>
 						<div @click="recommendSwitch" :class="[recommendShow ? 'arrow-open' : '', 'banner-arrow', 'r']"></div>
@@ -50,51 +52,10 @@ Vue.component('banner', {
 				</div>
 			  </div>`,
 	methods: {
-		// handleDownload() {
-		// 	global.handleDownload();
-		// },
-		// recommendSwitch() {
-		// 	this.recommendShow = !this.recommendShow;
-		// }
-		...mapMutations(['handleDownload', 'changeMenu']),
-		...mapActions(['server'])
+		...mapMutations(['changeMenu', 'recommendSwitch']),
+		...mapActions(['bannerServer', 'handleDownload'])
 	},
-
 	created() {
-		let data = this.params;
-
-		this.server({
-			data: data, 
-			url: './src/json/info.json', 
-			callback: (res) => {
-				if (res.meta.statusCode == 200) {
-					console.log(res);
-					this.authorInfo = res.content;
-				}
-			}
-		});
-		// global.server(data0, './src/component/banner/info.json', (res) => {
-		// 	console.log(res);
-		// 	if (res.meta.statusCode == 200) {
-		// 		let result = res.content;
-		// 		this.avatar = result.avatar;
-		// 		this.nickName = result.nickname;
-		// 		this.desc = result.description;
-		// 		this.followCount = result.followers;
-		// 		this.platform = result.platform;
-		// 	}
-		// });
-
-		// let data1 = {
-		// 	profileId,
-		// 	userId,
-		// 	locale
-		// };
-		// global.server(data1, './src/component/banner/recommend.json', (res) => {
-		// 	// console.log(res);
-		// 	if (res.meta.statusCode == 200) {
-		// 		this.recommendList = res.content;
-		// 	}
-		// });
+		this.bannerServer();
 	}
 });

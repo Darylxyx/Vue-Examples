@@ -27,6 +27,9 @@ const store = new Vuex.Store({
 
 	},
 	mutations: {
+		changeMenu(state, type) {
+			state.menuType = type;
+		},
 		queryParams(state) {
 			let search = location.search,
 			theRequest = {};

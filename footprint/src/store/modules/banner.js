@@ -1,17 +1,37 @@
 const bannerStore = {
 	state: {
 		authorInfo: {},
-		// avatar: '',
-		// nickName: '',
-		// desc: '',
-		// followCount: 0,
-		// platform: '',
 		recommendList: [],
 		recommendShow: false
 	},
 	mutations: {
-		changeMenu(state, type, a) {
-			console.log(a);
+		recommendSwitch(state) {
+			state.recommendShow = !state.recommendShow;
+		}
+	},
+	actions: {
+		bannerServer({state, dispatch, rootState }) {
+			let data = rootState.params;
+
+			dispatch('server', {
+				data: data, 
+				url: './src/json/info.json', 
+				callback: (res) => {
+					if (res.meta.statusCode == 200) {
+						state.authorInfo = res.content;
+					}
+				}
+			});
+
+			dispatch('server', {
+				data: data, 
+				url: './src/json/recommend.json', 
+				callback: (res) => {
+					if (res.meta.statusCode == 200) {
+						state.recommendList = res.content;
+					}
+				}
+			});
 		}
 	}
 }

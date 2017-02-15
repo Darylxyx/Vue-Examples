@@ -10,7 +10,7 @@ const store = new Vuex.Store({
 	modules: {
 		banner,
 		feeds,
-		// profile
+		profile
 	},
 	state: {
 		params: {},

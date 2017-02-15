@@ -1,15 +1,18 @@
 import './profile.css';
 import Vue from 'vue/dist/vue.js';
 
+let { mapState, mapMutations, mapActions } = Vuex;
+
 Vue.component('profile', {
-	data() {
-		return {
-			isSpread: false,
-			profileList: [],
-			relatedList: []
-		}
+	computed: {
+		...mapState({
+			isVip: 'isVip',
+			platIcon: 'platIcon',
+			isSpread: state => state.profile.isSpread,
+			profileList: state => state.profile.profileList,
+			relatedList: state => state.profile.relatedList
+		})
 	},
-	props: ['params', 'isVip', 'platIcon'],
 	template: `<div class="profile">
 				<div :class="['profile-area', 'f-15', 'overflow', isSpread ? '' : 'profile-shrink']">
 					<template v-for="item in profileList">
@@ -32,47 +35,18 @@ Vue.component('profile', {
 			  	</div>
 			  </div>`,
 	methods: {
-		handleSpread() {
-			this.isSpread = true;
-		},
 		handleLink(profileId) {
-			console.log(profileId);
-			// console.log(`${window.location.href.split('?')[0]}?profileId=${profileId}&locale=${this.params.locale}`);
-			window.location.href = `${window.location.href.split('?')[0]}?profileId=${profileId}&locale=${this.params.locale}`;
-		}
+			// console.log(profileId);
+		},
+		...mapMutations(['handleSpread']),
+		...mapActions(['profileServer'])
 	},
 	created() {
+		if (!this.isVip) {
+			return;
+		}
 
-		// if (!this.isVip) {
-		// 	return;
-		// }
-
-		// let {
-		// 	profileId,
-		// 	userId,
-		// 	locale
-		// } = this.params;
-
-		// let data0 = {
-		// 	profileId: '23410080:instagram',
-		// 	locale
-		// };
-		// global.server(data0, './src/component/profile/profile.json', (res) => { //global.host+'/api/v3/user/profile'
-		// 	// console.log(res);
-		// 	if (res.meta.statusCode == 200) {
-		// 		this.profileList = JSON.parse(res.content);
-		// 	}
-		// });
-
-		// let data1 = {
-		// 	profileId
-		// };
-		// global.server(data1, './src/component/profile/relate.json', (res) => {
-		// 	// console.log(res);
-		// 	if (res.meta.statusCode == 200) {
-		// 		this.relatedList = res.content;
-		// 	}
-		// });
+		this.profileServer();
 	}
 });
 

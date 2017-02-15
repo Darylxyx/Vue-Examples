@@ -7,7 +7,6 @@ Vue.component('banner', {
 	computed: {
 		...mapState({
 			isVip: 'isVip',
-			params: 'params',
 			platIcon: 'platIcon',
 			menuType: 'menuType',
 			authorInfo: state => state.banner.authorInfo,

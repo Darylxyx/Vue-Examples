@@ -1,6 +1,8 @@
 const bannerStore = {
 	state: {
-		authorInfo: {},
+		authorInfo: {
+			avatar: ''
+		},
 		recommendList: [],
 		recommendShow: false
 	},

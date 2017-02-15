@@ -12,13 +12,7 @@
 		<headers></headers>
 		<banner></banner>
 		<feeds v-show="menuType == 'feeds'"></feeds>
-<!-- 		<profile 
-			:params="params"
-			:is-vip="isVip"
-			:plat-icon="platIcon"
-			v-show="menuType == 'profile'"
-		>
-		</profile> -->
+		<profile v-show="menuType == 'profile'"></profile>
 		<download></download>
 	</div>
 <script src="https://unpkg.com/vuex@2.0.0"></script>

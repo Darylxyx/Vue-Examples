@@ -3,6 +3,7 @@
 		<h1>父组件标题</h1>
 		<child>
 			<p>子组件内容</p>
+			<p>子组件更多内容</p>
 		</child>
 	</div>
 </template>

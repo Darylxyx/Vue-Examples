@@ -25,6 +25,12 @@ const feedsStore = {
 				item.feedsMatrix = Matrix;
 			});
 			state.feedsList = feedsList;
+		},
+		handlePlayState(state, params) {
+			state.prevPlayer && state.prevPlayer.pause();
+			state.currentPlayer = params.postId;
+			params.videoTarget.play();
+			state.prevPlayer = params.videoTarget;
 		}
 	}
 }

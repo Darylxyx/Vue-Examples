@@ -64,19 +64,19 @@ Vue.component('feeds', {
 			  </div>`,
 	methods: {
 		handlePlay(postId, e) {
-			this.prevPlayer && this.prevPlayer.pause();
-			this.currentPlayer = postId;
-			let video = e.currentTarget.querySelector('video');
-			video.play();
-			this.prevPlayer = video;
+			let data = {
+				postId: postId,
+				videoTarget: e.currentTarget.querySelector('video')
+			};
+			this.handlePlayState(data);
 		},
 		formatTime(ms) {
-			let date = new Date(ms);
-			let str = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} / ${date.getHours()}:${date.getMinutes()}`;
+			let date = new Date(ms),
+			    str = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} / ${date.getHours()}:${date.getMinutes()}`;
 			// console.log(str);
 			return str;
 		},
-		...mapMutations(['createMatrix', 'testCallback']),
+		...mapMutations(['createMatrix', 'testCallback', 'handlePlayState']),
 		...mapActions(['server', 'handleDownload'])
 	},
 	created() {

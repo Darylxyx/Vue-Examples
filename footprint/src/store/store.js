@@ -23,9 +23,6 @@ const store = new Vuex.Store({
 			facebook: require('../images/facebook.png')
 		}
 	},
-	getters: {
-
-	},
 	mutations: {
 		changeMenu(state, type) {
 			state.menuType = type;
@@ -60,14 +57,12 @@ const store = new Vuex.Store({
 		},
 		handleDownload() {
 			let startTime = Date.now();
-
 			let timer = setTimeout(() => {
 				let endTime = Date.now();
 				if ((endTime - startTime) < 2200) {
 					window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.remarkmedia.app.kankan&ckey=CK1342812797881';
 				}
 			}, 2000);
-
 			window.onblur = () => {
 				clearTimeout(timer);
 			};

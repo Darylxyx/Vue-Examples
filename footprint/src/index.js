@@ -19,11 +19,6 @@ new Vue({
 	computed: {
 		...mapState(['menuType'])
 	},
-	// methods: {
-	// 	changeMenu(type) {
-	// 		this.menuType = type;
-	// 	}
-	// },
 	created() {
 	
 	}

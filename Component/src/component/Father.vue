@@ -19,6 +19,10 @@
 				<li class='my-list-style'>{{props.text}}</li>
 			</template>
 		</prop>
+		<button @click='toggleComponent'>切换组件</button>
+		<keep-alive>
+			<component :is='currentView'></component>
+		</keep-alive>
 	</div>
 </template>
 
@@ -27,18 +31,27 @@
 import child from './child.vue';
 import layout from './layOut.vue';
 import prop from './prop.vue';
+import conRed from './component1.vue';
+import conYellow from './component2.vue';
 
 export default {
 	data() {
 		return {
+			currentView: 'conRed',
 			list: ['list-1', 'list-2', 'list-3', 'list-4', 'list-5']
 		}
 	},
-
 	components: {
 		child,
 		layout,
-		prop
+		prop,
+		conRed,
+		conYellow
+	},
+	methods: {
+		toggleComponent() {
+			this.currentView == 'conRed' ? this.currentView = 'conYellow' : this.currentView = 'conRed';
+		}
 	}
 }
 

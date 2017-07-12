@@ -14,6 +14,12 @@
 			<h2 slot='footer'>layout 页脚</h2>
 			<p>layout 内容3</p>
 		</layout>
+		<prop>
+			<template scope='props'>
+				<p>Hello from parent</p>
+				<p>{{props.text}}</p>
+			</template>
+		</prop>
 	</div>
 </template>
 
@@ -21,11 +27,13 @@
 
 import child from './child.vue';
 import layout from './layOut.vue';
+import prop from './prop.vue';
 
 export default {
 	components: {
 		child,
-		layout
+		layout,
+		prop
 	}
 }
 

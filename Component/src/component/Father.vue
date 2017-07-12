@@ -14,9 +14,9 @@
 			<h2 slot='footer'>layout 页脚</h2>
 			<p>layout 内容3</p>
 		</layout>
-		<prop>
-			<template slot='item' scope='props'>
-				<li>{{props.text}}</li>
+		<prop :list='list'>
+			<template scope='props'>
+				<li class='my-list-style'>{{props.text}}</li>
 			</template>
 		</prop>
 	</div>
@@ -29,6 +29,12 @@ import layout from './layOut.vue';
 import prop from './prop.vue';
 
 export default {
+	data() {
+		return {
+			list: ['list-1', 'list-2', 'list-3', 'list-4', 'list-5']
+		}
+	},
+
 	components: {
 		child,
 		layout,
@@ -37,3 +43,9 @@ export default {
 }
 
 </script>
+
+<style>
+.my-list-style {
+	color: red;
+}
+</style>

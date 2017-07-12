@@ -15,9 +15,8 @@
 			<p>layout 内容3</p>
 		</layout>
 		<prop>
-			<template scope='props'>
-				<p>Hello from parent</p>
-				<p>{{props.text}}</p>
+			<template slot='item' scope='props'>
+				<li>{{props.text}}</li>
 			</template>
 		</prop>
 	</div>

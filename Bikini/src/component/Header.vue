@@ -33,7 +33,8 @@ const Menu = {
 	],
 	third: [
 		{ name: 'ThirdA', link: '/Third/ThirdA' },
-		{ name: 'ThirdB', link: '/Third/ThirdB' }
+		{ name: 'ThirdB', link: '/Third/ThirdB' },
+		{ name: '商品', link: '/Third/goods'}
 	]
 };
 

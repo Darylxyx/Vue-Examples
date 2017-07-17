@@ -1,0 +1,62 @@
+body {
+	background-color: #f7f7f7;
+}
+
+a {
+	color: inherit;
+}
+
+.page {
+	/*width: 100%;*/
+	padding: 20px;
+	height: 800px;
+	color: #f5f5f5;
+}
+
+.page-1 {
+	background-color: red;
+}
+
+.page-2 {
+	background-color: #FFD700;
+}
+
+.page-3 {
+	background-color: blue;
+}
+
+.page-4 {
+	background-color: green;
+}
+
+.page-5 {
+	background-color: orange;
+}
+
+.page-6 {
+	background-color: pink;
+}
+
+.page-7 {
+	background-color: brown;
+}
+
+.page-8 {
+	background-color: #D2691E;
+}
+
+.page-9 {
+	background-color: #B22222;
+}
+
+.page-10 {
+	background-color: #FF6347;
+}
+
+.page-11 {
+	background-color: #40E0D0;
+}
+
+.page-12 {
+	background-color: #FF3366;
+}

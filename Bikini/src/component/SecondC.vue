@@ -1,5 +1,5 @@
 <template>
-	<div class='page'>
+	<div class='page page-8'>
 		<h1>{{message}}</h1>
 	</div>
 </template>
@@ -8,7 +8,7 @@
 module.exports = {
 	data () {
 		return {
-			message: 'Third Component Content.'
+			message: 'SecondCCCCCCC Component Content.'
 		}
 	}
 }

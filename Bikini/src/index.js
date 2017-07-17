@@ -18,6 +18,8 @@ import SecondC from './component/SecondC.vue';
 import Third from './component/Third.vue';
 import ThirdA from './component/ThirdA.vue';
 import ThirdB from './component/ThirdB.vue';
+import Commondity from './component/commodity.vue';
+import Detail from './component/detail.vue';
 
 Vue.use(VueRouter);
 
@@ -35,7 +37,9 @@ let router = new VueRouter({
 		{ path: '/Second/SecondC', component: SecondC },
 		{ path: '/Third', component: Third },
 		{ path: '/Third/ThirdA', component: ThirdA },
-		{ path: '/Third/ThirdB', component: ThirdB }
+		{ path: '/Third/ThirdB', component: ThirdB },
+		{ path: '/Third/goods', component: Commondity },
+		{ path: '/Third/goods/:id', component: Detail }
 	]
 });
 

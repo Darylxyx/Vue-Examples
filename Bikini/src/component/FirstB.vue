@@ -1,5 +1,5 @@
 <template>
-	<div class='page'>
+	<div class='page page-3'>
 		<h1>{{message}}</h1>
 	</div>
 </template>

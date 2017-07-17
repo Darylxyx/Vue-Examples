@@ -9,10 +9,15 @@ import './global';
 import App from './App.vue';
 import First from './component/First.vue';
 import FirstA from './component/FirstA.vue';
+import FirstB from './component/FirstB.vue';
+import FirstC from './component/FirstC.vue';
 import Second from './component/Second.vue';
+import SecondA from './component/SecondA.vue';
+import SecondB from './component/SecondB.vue';
+import SecondC from './component/SecondC.vue';
 import Third from './component/Third.vue';
-
-console.log(FirstA);
+import ThirdA from './component/ThirdA.vue';
+import ThirdB from './component/ThirdB.vue';
 
 Vue.use(VueRouter);
 
@@ -22,8 +27,15 @@ let router = new VueRouter({
 		{ path: '/', redirect: '/First' },
 		{ path: '/First', component: First },
 		{ path: '/First/FirstA', component: FirstA },
+		{ path: '/First/FirstB', component: FirstB },
+		{ path: '/First/FirstC', component: FirstC },
 		{ path: '/Second', component: Second },
-		{ path: '/Third', component: Third }
+		{ path: '/Second/SecondA', component: SecondA },
+		{ path: '/Second/SecondB', component: SecondB },
+		{ path: '/Second/SecondC', component: SecondC },
+		{ path: '/Third', component: Third },
+		{ path: '/Third/ThirdA', component: ThirdA },
+		{ path: '/Third/ThirdB', component: ThirdB }
 	]
 });
 

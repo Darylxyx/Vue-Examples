@@ -114,3 +114,7 @@ a {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+.relative {
+	position: relative;
+}

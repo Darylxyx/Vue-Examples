@@ -1,5 +1,7 @@
 <template>
-	<h1>{{message}}</h1>
+	<div class='page'>
+		<h1>{{message}}</h1>
+	</div>
 </template>
 
 <script>

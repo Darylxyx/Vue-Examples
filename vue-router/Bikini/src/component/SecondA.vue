@@ -8,7 +8,7 @@
 module.exports = {
 	data () {
 		return {
-			message: 'FirstAAAAAAAAA Component Content.'
+			message: 'SecondAAAAAA Component Content.'
 		}
 	}
 }

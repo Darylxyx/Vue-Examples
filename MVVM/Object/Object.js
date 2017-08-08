@@ -23,15 +23,24 @@ for (var i in person) {
 
 //=================================访问器属性=============================
 
-// var book = {};
+var book = {
+	_year: 2004
+};
 
-// book.name = 'The Great Gatsby';
+// book.name = 'The Great Gatsby'; 
 
-// Object.defineProperty(book, 'name', {
-// 	get: function() {
-// 		// console.log('getter');
-// 		return this.name;
-// 	}
-// });
+Object.defineProperty(book, 'year', {
+	get: function() {
+		console.log('getter');
+		return this._year;
+	},
 
-// console.log(book.name);
+	set: function(newValue) {
+		console.log('setter');
+		this._year = newValue;
+	}
+});
+
+book.year = 2005;
+
+console.log(book.year);

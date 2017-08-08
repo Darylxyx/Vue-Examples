@@ -27,9 +27,7 @@ var book = {
 	_year: 2004
 };
 
-// book.name = 'The Great Gatsby'; 
-
-Object.defineProperty(book, 'year', {
+Object.defineProperty(book, 'year', { //在设置某个访问器属性时，不能在 getter 和 setter 中访问自身，否则会循环引用。
 	get: function() {
 		console.log('getter');
 		return this._year;
@@ -44,3 +42,5 @@ Object.defineProperty(book, 'year', {
 book.year = 2005;
 
 console.log(book.year);
+
+//不能将对象的属性同时设置为数据属性和访问器属性

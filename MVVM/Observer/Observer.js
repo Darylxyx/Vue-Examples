@@ -1,16 +1,15 @@
 var Observer = (function() {
 
-	var clientList = {},
-		listen, remove, trigger;
+	var clientList = {};
 
-	listen = function(key, fn) {
+	function listen(key, fn) {
 		if (!clientList[key]) {
 			clientList[key] = [];
 		}
 		clientList[key].push(fn);
 	};
 
-	remove = function(key, fn) {
+	function remove(key, fn) {
 		var fns = clientList[key];
 		// console.log(fns);
 		if (!fns) return;
@@ -27,7 +26,7 @@ var Observer = (function() {
 		}
 	};
 
-	trigger = function() {
+	function trigger() {
 		var key = Array.prototype.shift.call(arguments),
 			arg = arguments,
 			fns = clientList[key],

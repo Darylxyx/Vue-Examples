@@ -15,7 +15,9 @@ saleOffices.trigger = function() {
 		fns = this.clientList[key],
 		_this = this;
 
-	
+	if (!fns || !fns.length) {
+		return;
+	}
 
 	fns.forEach(function(fn, index) {
 		fn.apply(_this, arg);
@@ -23,13 +25,16 @@ saleOffices.trigger = function() {
 };
 
 saleOffices.listen('80平', function(price) {
-	console.log(price);
+	console.log('原价：' + price);
 });
 
-// saleOffices.listen(function(price, suqareMeter) {
-// 	console.log(price);
-// 	console.log(suqareMeter);
-// });
+saleOffices.listen('80平', function(price) {
+	console.log('折扣价：' + price*0.8);
+});
+
+saleOffices.listen('100平', function(price) {
+	console.log('原价：' + price);
+});
 
 saleOffices.trigger('80平', 88);
-// saleOffices.trigger(200, 110);
+saleOffices.trigger('100平', 110);

@@ -49,25 +49,38 @@ var Observer = (function() {
 
 })();
 
-function fn1(price) {
-	console.log('原价：' + price);
-}
+var count = 0,
+	$num = document.querySelector('#number'),
+	$add = document.querySelector('#add');
 
-function fn2(price) {
-	console.log('折扣价：' + price*0.8);
-}
+Observer.listen('add', function(count) {
+	$num.innerHTML = count;
+});
 
-//订阅者
-Observer.listen('80平', fn1);
+$add.onclick = function() {
+	Observer.trigger('add', ++count);
+};
 
-Observer.listen('80平', fn2);
 
-Observer.listen('100平', fn1);
+// function fn1(price) {
+// 	console.log('原价：' + price);
+// }
 
-//发布者
-Observer.trigger('80平', 88);
-Observer.trigger('100平', 110);
+// function fn2(price) {
+// 	console.log('折扣价：' + price*0.8);
+// }
 
-Observer.remove('80平', fn1);
+// //订阅者
+// Observer.listen('80平', fn1);
 
-Observer.trigger('80平', 88);
+// Observer.listen('80平', fn2);
+
+// Observer.listen('100平', fn1);
+
+// //发布者
+// Observer.trigger('80平', 88);
+// Observer.trigger('100平', 110);
+
+// Observer.remove('80平', fn1);
+
+// Observer.trigger('80平', 88);

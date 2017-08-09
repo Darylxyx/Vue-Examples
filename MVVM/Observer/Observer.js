@@ -1,40 +1,74 @@
-var saleOffices = {};
+var Observer = (function() {
 
-saleOffices.clientList = {};
+	var clientList = {},
+		listen, remove, trigger;
 
-saleOffices.listen = function(key, fn) {
-	if (!this.clientList[key]) {
-		this.clientList[key] = [];
-	}
-	this.clientList[key].push(fn);
-};
+	listen = function(key, fn) {
+		if (!clientList[key]) {
+			clientList[key] = [];
+		}
+		clientList[key].push(fn);
+	};
 
-saleOffices.trigger = function() {
-	var key = Array.prototype.shift.call(arguments),
-		arg = arguments,
-		fns = this.clientList[key],
-		_this = this;
+	remove = function(key, fn) {
+		var fns = clientList[key];
+		// console.log(fns);
+		if (!fns) return;
 
-	if (!fns || !fns.length) {
-		return;
-	}
+		if (!fn) {
+			fns = [];
+		} else {
+			fns.forEach(function(item, index) {
+				if (item == fn) {
+					console.log(index);
+					fns.splice(index, 1);
+				}
+			});
+		}
+	};
 
-	fns.forEach(function(fn, index) {
-		fn.apply(_this, arg);
-	});
-};
+	trigger = function() {
+		var key = Array.prototype.shift.call(arguments),
+			arg = arguments,
+			fns = clientList[key],
+			_this = this;
 
-saleOffices.listen('80平', function(price) {
+		if (!fns || !fns.length) {
+			return;
+		}
+
+		fns.forEach(function(fn, index) {
+			fn.apply(_this, arg);
+		});
+	};
+
+	return {
+		listen: listen,
+		remove: remove,
+		trigger: trigger
+	};
+
+})();
+
+function fn1(price) {
 	console.log('原价：' + price);
-});
+}
 
-saleOffices.listen('80平', function(price) {
+function fn2(price) {
 	console.log('折扣价：' + price*0.8);
-});
+}
 
-saleOffices.listen('100平', function(price) {
-	console.log('原价：' + price);
-});
+//订阅者
+Observer.listen('80平', fn1);
 
-saleOffices.trigger('80平', 88);
-saleOffices.trigger('100平', 110);
+Observer.listen('80平', fn2);
+
+Observer.listen('100平', fn1);
+
+//发布者
+Observer.trigger('80平', 88);
+Observer.trigger('100平', 110);
+
+Observer.remove('80平', fn1);
+
+Observer.trigger('80平', 88);

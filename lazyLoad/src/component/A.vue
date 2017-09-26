@@ -1,12 +1,14 @@
 <template>
-	<h1>This is A component.</h1>
+	<h1>{{message}}</h1>
 </template>
 
 <script>
 
 export default {
 	data() {
-		return {};
+		return {
+			message: 'This is A component.'
+		};
 	}
 }
 

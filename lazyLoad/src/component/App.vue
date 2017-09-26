@@ -1,11 +1,14 @@
 <template>
-	<h1>{{message}}</h1>
+	<div>
+		<h1>{{message}}</h1>
+		<router-view></router-view>
+	</div>
 </template>
 
 <script>
 module.exports = {
 	data () {
-		const str = 'Hello Vue';
+		const str = 'Async Lazy Load';
 		return {
 			message: str
 		}

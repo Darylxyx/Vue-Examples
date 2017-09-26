@@ -1,0 +1,181 @@
+html, body, div, h1, h2, h3, h4, h5, h6, p, span, img, input, textarea, ul, ol, li, hr {
+	margin: 0;
+	padding: 0;
+}
+
+ul, ol {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+hr {
+	border: none;
+	outline: none;
+}
+
+.l {
+	float: left;
+}
+
+.r {
+	float: right;
+}
+
+.bg-img {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.ic-img {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.f-13 {
+	font-size: 13px;
+}
+
+.f-14 {
+	font-size: 14px;
+}
+
+.f-15 {
+	font-size: 15px;
+}
+
+.f-16 {
+	font-size: 16px;
+}
+
+.f-18 {
+	font-size: 18px;
+}
+
+.f-20 {
+	font-size: 20px;
+}
+
+.f-bold {
+	font-weight: bold;
+}
+
+.f-bolder {
+	font-weight: bolder;
+}
+
+.c-white {
+	color: #fff;
+}
+
+.c-black {
+	color: #000;
+}
+
+.c-cc {
+	color: #ccc;
+}
+
+.c-c9 {
+	color: #c9c9c9;
+}
+
+.lh-100 {
+	line-height: 100%;
+}
+
+.lh-130 {
+	line-height: 130%;
+}
+
+.lh-140 {
+	line-height: 140%;
+}
+
+.lh-150 {
+	line-height: 150%;
+}
+
+.lh-170 {
+	line-height: 170%;
+}
+
+.lh-200 {
+	line-height: 200%;
+}
+
+.inline {
+	display: inline;
+}
+
+.block {
+	display: block;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.border-box {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.clear {
+	clear: both;
+}
+
+.overflow {
+	overflow: hidden;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-overflow {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.text-indent {
+	text-indent: 2em;
+}
+
+.text-wrap {
+	word-wrap: break-word;
+	word-break: normal;
+}
+
+.absolute {
+	position: absolute;
+}
+
+.relative {
+	position: relative;
+}
+
+.cusor {
+	cursor: pointer;
+}
+
+.hidden {
+	display: none;
+}
+
+.opacity {
+	opacity: 0;
+}

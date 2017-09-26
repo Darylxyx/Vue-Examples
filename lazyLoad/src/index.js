@@ -4,20 +4,18 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import App from './component/App.vue';
-// import A from './component/A.vue';
-// console.log(A);
 
-// const AsynA = () => Promise.resolve(A);
-// console.log(AsynA);
-
-const AsynA = () => import('./component/A.vue');
-console.log(AsynA);
+const AsyncA = () => import('./component/A.vue');
+const AsyncB = () => import('./component/B.vue');
+const AsyncC = () => import('./component/C.vue');
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
 	routes: [
-		{path: '/A', component: AsynA}
+		{path: '/A', component: AsyncA},
+		{path: '/B', component: AsyncB},
+		{path: '/C', component: AsyncC}
 	]
 });
 

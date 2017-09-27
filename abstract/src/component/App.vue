@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class='container'>
 		<h1>{{message}}</h1>
 		<keyboard></keyboard>
 	</div>

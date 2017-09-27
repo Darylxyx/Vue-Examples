@@ -1,17 +1,21 @@
 <template>
 	<div>
 		<h1>{{message}}</h1>
-		<router-view></router-view>
+		<keyboard></keyboard>
 	</div>
 </template>
 
 <script>
+import keyboard from './Keyboard.vue';
 module.exports = {
 	data () {
-		const str = 'Async Lazy Load';
+		const str = 'Keyboard Component';
 		return {
 			message: str
 		}
+	},
+	components: {
+		keyboard
 	}
 }
 </script>

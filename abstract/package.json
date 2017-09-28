@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --content-base --port 3000 --color",
+    "start": "webpack-dev-server --inline --content-base --port 4000 --color",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

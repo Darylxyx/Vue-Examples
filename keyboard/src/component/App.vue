@@ -2,12 +2,12 @@
 	<div class='container'>
 		<h1>{{message}}</h1>
 		<input @focus='handleShowKeyboard($event)' v-model='value' type='text' class='input' />
-		<keyboard ref='kbref' sp-key="X" max-length='6' @submit-event='handleSubmit' @change-event='handleChange'></keyboard>
+		<keyboard ref='kbref' sp-key="X" max-length='6' random='true' @submit-event='handleSubmit' @change-event='handleChange'></keyboard>
 	</div>
 </template>
 <script>
 import keyboard from './Keyboard.vue';
-module.exports = {
+export default {
 	data () {
 		const str = 'Keyboard Component';
 		return {

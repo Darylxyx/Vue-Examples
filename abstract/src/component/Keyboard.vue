@@ -11,7 +11,9 @@
 	</div>
 </template>
 <script>
+import Vue from 'vue';
 export default {
+	name: 'keyboard',
 	props: ['spKey', 'random', 'maxLength'],
 	data() {
 		return {
@@ -78,15 +80,8 @@ export default {
 		},
 
 		handleSubmit() {
-			console.log(this.keySp);
 			this.$emit('submit-event');
 		}
-	},
-
-	mounted() {
-		globalEvent.$on('keyboard-show', (type) => {
-			this.keyboardToggle(type);
-		});
 	}
 }
 </script>

@@ -2,7 +2,7 @@
 	<div class='container'>
 		<h1>{{message}}</h1>
 		<input @focus='handleShowKeyboard($event)' v-model='value' type='text' class='input' />
-		<keyboard sp-key="X" random="true" max-length='6' @submit-event='handleSubmit' @change-event='handleChange'></keyboard>
+		<keyboard ref='kbref' sp-key="X" max-length='6' @submit-event='handleSubmit' @change-event='handleChange'></keyboard>
 	</div>
 </template>
 <script>
@@ -18,18 +18,16 @@ module.exports = {
 
 	methods: {
 		handleChange(value) {
-			// console.log(value);
 			this.value = value;
 		},
 
 		handleShowKeyboard(e) {
-			// console.log(e.preventDefault);
 			e.preventDefault();
-			globalEvent.$emit('keyboard-show', true);
+			this.$refs.kbref.keyboardToggle(true);
 		},
 
 		handleSubmit() {
-			console.log('submit');
+			console.log('submit: ' + this.value);
 		}
 	},
 

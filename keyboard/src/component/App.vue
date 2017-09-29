@@ -9,9 +9,8 @@
 import keyboard from './Keyboard.vue';
 export default {
 	data () {
-		const str = 'Keyboard Component';
 		return {
-			message: str,
+			message: 'Keyboard Component',
 			value: ''
 		}
 	},

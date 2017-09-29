@@ -173,10 +173,6 @@ export default {
 	background-color: #256eac;
 }
 
-.b-t {
-	border-top: 1px soild #E0E1E2;
-}
-
 .b-b {
 	border-bottom: 1px solid #E0E1E2;
 }

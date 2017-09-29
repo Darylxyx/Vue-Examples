@@ -2,7 +2,7 @@
 	<div class='container'>
 		<h1>{{message}}</h1>
 		<input @focus='handleShowKeyboard($event)' v-model='value' type='text' class='input' />
-		<keyboard sp-key="X" random="true" max-length='10' @submit-event='handleSubmit' @change-event='handleChange'></keyboard>
+		<keyboard sp-key="X" random="true" max-length='6' @submit-event='handleSubmit' @change-event='handleChange'></keyboard>
 	</div>
 </template>
 <script>

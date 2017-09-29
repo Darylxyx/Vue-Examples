@@ -12,7 +12,7 @@
 </template>
 <script>
 export default {
-	props: ['spKey', 'random'],
+	props: ['spKey', 'random', 'maxLength'],
 	data() {
 		return {
 			winW: window.innerWidth,
@@ -54,6 +54,12 @@ export default {
 		handleInput(value) {
 
 			if (value == '' || value == undefined || value == null) {
+				return;
+			}
+
+			let max = Number(this.maxLength);
+
+			if (!isNaN(max) && this.inputStr.length+1 > max) {
 				return;
 			}
 

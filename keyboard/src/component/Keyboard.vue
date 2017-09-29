@@ -2,10 +2,14 @@
 	<div class='kb-content' :class='!keyboardShow && "kb-hide"'>
 		<div class='kb-left'>
 			<div v-for="(item, index) in keyArr" class='kb-item kb-left-item b-r' :class="index < 9 && 'b-b'" :style="{height: itemH + 'px', lineHeight: itemH + 'px'}" @click="handleInput(item)">{{item}}</div>
-			<div class='kb-item kb-left-item b-r' :style="{height: itemH + 'px', lineHeight: itemH + 'px'}" @click='keyboardToggle(false)'>h</div>
+			<div class='kb-item kb-left-item b-r' :style="{height: itemH + 'px', lineHeight: itemH + 'px'}" @click='keyboardToggle(false)'>
+				<img class='submit-icon' :src="require('../images/hide.png')" />
+			</div>
 		</div>
 		<div class='kb-right'>
-			<div @click='handleCancel' class='kb-item kb-right-item k-cancel b-b' :style="{height: itemH * 2 + 'px', lineHeight: itemH * 2 + 'px'}">退格</div>
+			<div @click='handleDelete' class='kb-item kb-right-item k-cancel b-b' :style="{height: itemH * 2 + 'px', lineHeight: itemH * 2 + 'px'}">
+				<img class='delete-icon' :src="require('../images/delete.png')" />
+			</div>
 			<div @click='handleSubmit' class='kb-item kb-right-item k-submit' :style="{height: itemH * 2 + 'px', lineHeight: itemH * 2 + 'px'}">确定</div>
 		</div>
 	</div>
@@ -45,10 +49,6 @@ export default {
 
 		itemH() {
 			return this.winW / 4 * 0.66;
-		},
-
-		totalH() {
-			return this.itemH * 4 + 1;
 		}
 	},
 
@@ -69,7 +69,7 @@ export default {
 			this.$emit('change-event', this.inputStr);
 		},
 
-		handleCancel() {
+		handleDelete() {
 			let str = this.inputStr;
 			this.inputStr = str.substring(0, str.length - 1);
 			this.$emit('change-event', this.inputStr);
@@ -141,12 +141,32 @@ export default {
 .k-cancel {
 	font-size: 18px;
 	background-color: #fff;
+	position: relative;
+}
+
+.delete-icon {
+	width: 42%;
+	position: absolute;
+	left: 50%;
+	margin-left: -21%;
+	top: 50%;
+	margin-top: -11%;
 }
 
 .k-submit {
 	font-size: 18px;
 	color: #fff;
 	background-color: #244E94;
+	position: relative;
+}
+
+.submit-icon {
+	position: absolute;
+	width: 48%;
+	left: 50%;
+	margin-left: -24%;
+	top: 50%;
+	margin-top: -17%;
 }
 
 .k-submit:active {

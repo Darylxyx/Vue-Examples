@@ -1,8 +1,16 @@
 <template>
 	<div class='container'>
-		<h1>{{message}}</h1>
-		<input @focus='handleShowKeyboard($event)' v-model='value' type='text' class='input' />
-		<keyboard ref='kbref' sp-key="X" max-length='6' random='true' @submit-event='handleSubmit' @change-event='handleChange'></keyboard>
+		<h1 class='title'>{{title}}</h1>
+		<ul class='number-input'>
+			<li>{{inputArr[0]}}</li>
+			<li>{{inputArr[1]}}</li>
+			<li>{{inputArr[2]}}</li>
+			<li>{{inputArr[3]}}</li>
+			<li>{{inputArr[4]}}</li>
+			<li>{{inputArr[5]}}</li>
+		</ul>
+		<input v-show='false' @focus='handleShowKeyboard($event)' v-model='value' type='text' class='input' />
+		<keyboard ref='kbref' max='6' sp-key="" random='true' @submit-event='handleSubmit' @change-event='handleChange'></keyboard>
 	</div>
 </template>
 <script>
@@ -10,14 +18,17 @@ import keyboard from './Keyboard.vue';
 export default {
 	data () {
 		return {
-			message: 'Keyboard Component',
+			inputArr: [],
+			title: 'Keyboard Component',
 			value: ''
 		}
 	},
 
 	methods: {
-		handleChange(value) {
-			this.value = value;
+		handleChange(value, currentValue) {
+			console.log(value);
+			this.inputArr = value.split('');
+			// this.value = value;
 		},
 
 		handleShowKeyboard(e) {
@@ -36,6 +47,33 @@ export default {
 }
 </script>
 <style>
+.title {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.number-input {
+	display: inline-block;
+	overflow: hidden;
+	margin-top: 30px;
+}
+
+.number-input li {
+	width: 40px;
+	height: 40px;
+	background-color: #fff;
+	float: left;
+	border: 1px solid #E0E1E2;
+	border-left: none;
+	text-align: center;
+	line-height: 40px;
+	font-size: 18px;
+}
+
+.number-input li:first-child {
+	border-left: 1px solid #E0E1E2;
+}
+
 .input {
 	display: block;
 	margin: 30px auto 0 auto;

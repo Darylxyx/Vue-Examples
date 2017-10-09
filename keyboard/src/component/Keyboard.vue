@@ -18,7 +18,7 @@
 import Vue from 'vue';
 export default {
 	name: 'keyboard',
-	props: ['spKey', 'random', 'maxLength'],
+	props: ['spKey', 'random', 'max'],
 	data() {
 		return {
 			winW: window.innerWidth,
@@ -30,7 +30,6 @@ export default {
 
 	computed: {
 		keyArr() {
-
 			let spKey = this.spKey;
 
 			if (spKey == undefined || spKey == 'undefined' || spKey == null) {
@@ -59,14 +58,14 @@ export default {
 				return;
 			}
 
-			let max = Number(this.maxLength);
+			let max = Number(this.max);
 
 			if (!isNaN(max) && this.inputStr.length+1 > max) {
 				return;
 			}
 
 			this.inputStr += value;
-			this.$emit('change-event', this.inputStr);
+			this.$emit('change-event', this.inputStr, value);
 		},
 
 		handleDelete() {

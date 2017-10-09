@@ -12,9 +12,16 @@ html, body {
 
 .container {
 	width: 100%;
+	max-width: 500px;
 	height: 100%;
+	margin: 0 auto;
 	position: relative;
 	background-color: #EAEBEC;
 	overflow: hidden;
 	text-align: center;
+	border-left: 1px solid #E0E1E2;
+	border-right: 1px solid #E0E1E2;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	/*border: 1px solid #333;*/
 }

@@ -20,7 +20,7 @@ export default {
 	props: ['spKey', 'random', 'max'],
 	data() {
 		return {
-			winW: window.innerWidth,
+			winW: window.innerWidth < 500 ? window.innerWidth : 500,
 			baseArr: [],
 			inputStr: '',
 			keyboardShow: true
@@ -99,7 +99,7 @@ export default {
 <style>
 .kb-content {
 	width: 100%;
-	position: fixed;
+	position: absolute;
 	left: 0;
 	bottom: 0;
 	overflow: hidden;
@@ -141,7 +141,7 @@ export default {
 }
 
 .kb-left-item {
-	width: 33.33%;
+	width: 33.3333333%;
 	background-color: #fff;
 }
 

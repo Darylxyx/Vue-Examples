@@ -1,7 +1,7 @@
 <template>
 	<div class='container'>
 		<h1 class='title'>{{title}}</h1>
-		<ul class='number-input'>
+		<ul class='number-input' @click='handleShowKeyboard'>
 			<li>{{inputArr[0]}}</li>
 			<li>{{inputArr[1]}}</li>
 			<li>{{inputArr[2]}}</li>
@@ -19,8 +19,7 @@ export default {
 	data () {
 		return {
 			inputArr: [],
-			title: 'Keyboard Component',
-			value: ''
+			title: 'Keyboard Component'
 		}
 	},
 
@@ -32,12 +31,15 @@ export default {
 		},
 
 		handleShowKeyboard(e) {
-			e.preventDefault();
+			e && e.preventDefault();
 			this.$refs.kbref.keyboardToggle(true);
 		},
 
 		handleSubmit() {
-			console.log('submit: ' + this.value);
+			if (this.inputArr.length != 6) return;
+			console.log('submit: ' + this.inputArr.join(''));
+			this.$refs.kbref.handleInit();
+			this.$refs.kbref.handleClear();
 		}
 	},
 

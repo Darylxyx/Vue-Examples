@@ -22,7 +22,7 @@ export default {
 	data() {
 		return {
 			winW: window.innerWidth,
-			baseArr: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+			baseArr: [],
 			inputStr: '',
 			keyboardShow: true
 		};
@@ -30,7 +30,19 @@ export default {
 
 	computed: {
 		keyArr() {
+			this.handleInit();
+			return this.baseArr;
+		},
+
+		itemH() {
+			return this.winW / 4 * 0.66;
+		}
+	},
+
+	methods: {
+		handleInit() {
 			let spKey = this.spKey;
+			this.baseArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
 			if (spKey == undefined || spKey == 'undefined' || spKey == null) {
 				spKey = '';
@@ -43,15 +55,8 @@ export default {
 			}
 
 			this.baseArr.splice(this.baseArr.length - 1, 0, spKey);
-			return this.baseArr;
 		},
 
-		itemH() {
-			return this.winW / 4 * 0.66;
-		}
-	},
-
-	methods: {
 		handleInput(value) {
 
 			if (value == '' || value == undefined || value == null) {
@@ -70,6 +75,9 @@ export default {
 
 		handleDelete() {
 			let str = this.inputStr;
+
+			if (!str.length) return;
+
 			this.inputStr = str.substring(0, str.length - 1);
 			this.$emit('change-event', this.inputStr);
 		},
@@ -80,6 +88,11 @@ export default {
 
 		handleSubmit() {
 			this.$emit('submit-event');
+		},
+
+		handleClear() {
+			this.inputStr = '';
+			this.$emit('change-event', this.inputStr, '');
 		}
 	}
 }

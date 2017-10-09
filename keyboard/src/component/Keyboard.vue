@@ -15,7 +15,6 @@
 	</div>
 </template>
 <script>
-import Vue from 'vue';
 export default {
 	name: 'keyboard',
 	props: ['spKey', 'random', 'max'],
@@ -48,7 +47,7 @@ export default {
 				spKey = '';
 			}
 
-			if (this.random) {
+			if (this.random && this.random != 'false') {
 				this.baseArr.sort(function() {
 					return Math.random() - Math.random();
 				});

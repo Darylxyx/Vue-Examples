@@ -10,7 +10,7 @@
 			<li>{{inputArr[5]}}</li>
 		</ul>
 		<input v-show='false' @focus='handleShowKeyboard($event)' v-model='value' type='text' class='input' />
-		<keyboard ref='kbref' max='6' sp-key="" random='true' @submit-event='handleSubmit' @change-event='handleChange'></keyboard>
+		<keyboard ref='kbref' max='6' random='false' @submit-event='handleSubmit' @change-event='handleChange'></keyboard>
 	</div>
 </template>
 <script>
@@ -25,7 +25,7 @@ export default {
 
 	methods: {
 		handleChange(value, currentValue) {
-			console.log(value);
+			// console.log(value, currentValue);
 			this.inputArr = value.split('');
 			// this.value = value;
 		},

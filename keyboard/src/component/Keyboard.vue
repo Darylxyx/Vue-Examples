@@ -17,7 +17,14 @@
 <script>
 export default {
 	name: 'keyboard',
-	props: ['spKey', 'random', 'max'],
+	props: {
+		spKey: String, 
+		random: {
+			type: Boolean,
+			default: false
+		}, 
+		max: Number
+	},
 	data() {
 		return {
 			winW: window.innerWidth < 500 ? window.innerWidth : 500,
